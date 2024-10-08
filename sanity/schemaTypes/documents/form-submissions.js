@@ -4,51 +4,81 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'name',
-      title: 'Name',
+      name: 'firstname',
+      title: 'First Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
-      readOnly: true, // Make this field read-only
+      readOnly: true,
     },
     {
-      name: 'phone',
-      title: 'Phone',
+      name: 'lastname',
+      title: 'Last Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
-      readOnly: true, // Make this field read-only
+      readOnly: true,
     },
     {
       name: 'email',
       title: 'Email',
       type: 'string',
-      validation: (Rule) => Rule.required().email(),
-      readOnly: true, // Make this field read-only
+      readOnly: true,
     },
     {
-      name: 'subject',
-      title: 'Subject',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-      readOnly: true, // Make this field read-only
+      name: 'instruments',
+      title: 'Instruments',
+      type: 'array',
+      of: [{ type: 'string' }],
+      readOnly: true,
     },
     {
-      name: 'message',
-      title: 'Message',
+      name: 'pastExperience',
+      title: 'Past Experience',
       type: 'text',
-      validation: (Rule) => Rule.required(),
-      readOnly: true, // Make this field read-only
+      readOnly: true,
+    },
+    {
+      name: 'availability',
+      title: 'Availability',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { 
+              name: 'day',
+              title: 'Day',
+              type: 'string',
+            },
+            { 
+              name: 'fromTime',
+              title: 'From Time',
+              type: 'string',
+            },
+            { 
+              name: 'toTime',
+              title: 'To Time',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+      readOnly: true,
+    },
+    {
+      name: 'additionalComments',
+      title: 'Additional Comments',
+      type: 'text',
+      readOnly: true,
     },
   ],
 
   preview: {
     select: {
-      title: 'name',
+      title: 'firstname',
       subtitle: '_createdAt',
     },
     prepare(selection) {
       const { title, subtitle } = selection;
       return {
-        title: title,
+        title: title || "Title of submisiosns",
         subtitle: `Submitted on: ${new Date(subtitle).toLocaleString()}`,
       };
     },
