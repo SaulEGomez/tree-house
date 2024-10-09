@@ -7,6 +7,7 @@ import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { useRef } from "react";
 import { urlFor } from "../sanity/lib/client";
+import { Link } from "react-scroll";
 
 const iconMap = {
   facebook: <FaFacebookF />,
@@ -44,7 +45,7 @@ function Hero({ data }) {
 
   const _topImage = urlFor(topImage).url();
   return (
-    <section className="/ bg-color-1 h-auto w-full pt-9 pb-[120px]">
+    <section className="/ bg-color-1 h-auto w-full pt-6 pb-[140px]">
       <div
         style={{
           backgroundImage: `url(${bgimage})`,
@@ -53,7 +54,7 @@ function Hero({ data }) {
           height: "100vh",
           width: "100%",
         }}
-        className="pt-[100px] mx-auto w-full  h-auto"
+        className="pt-[150px] mx-auto w-full  h-auto"
       >
         <div>
           <div className="flex flex-col justify-center items-center gap-[20px]  h-auto">
@@ -150,8 +151,7 @@ function Hero({ data }) {
               }
               className="flex justify-center items-center  gap-[20px] flex-wrap mt-[18px]"
             >
-              <a
-                href={blackButtonUrl}
+              <Link to="about" smooth={true} duration={500}
                 initial={{ opacity: 0, y: 110 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={
@@ -162,13 +162,12 @@ function Hero({ data }) {
                 className=" btn flex justify-center items-center outline-none border-none bg-black w-[200px] text-white px-6 py-[10px] rounded-[4px] cursor-pointer hover:scale-[0.9] transition-all duration-500 tracking-wider font-medium"
               >
                 {blackButtonText}
-              </a>
-              <a
-                href={transparentButtonUrl}
+              </Link>
+              <Link Link to="contact" smooth={true} duration={500}
                 className="btn flex justify-center items-center outline-none border-[1px] border-black bg-transparent w-[180px] text-black px-6 py-[10px] rounded-[4px] cursor-pointer hover:scale-[0.9] transition-all duration-500 tracking-wider font-medium"
               >
                 {transparentButtonText}
-              </a>
+              </Link>
             </motion.div>
             <div className="mt-[30px]" ref={ref3}>
               <ul className="flex gap-6 justify-center items-center">
@@ -184,11 +183,7 @@ function Hero({ data }) {
                           ? { duration: 0.75, delay: handledelay(i * 0.1) }
                           : { duration: 1, delay: handledelay(i * 0.1) }
                       }
-                      className={
-                        key === "facebook"
-                          ? "text-[22px] text-red-600 hover:text-red-600"
-                          : "text-xl text-black hover:text-red-600"
-                      }
+                      className="text-[30px] text-black hover:text-green-700"
                     >
                       <a href={url} target="_blank" rel="noopener noreferrer">
                         {iconMap[key]}

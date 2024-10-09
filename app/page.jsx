@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuoteSection from "@/components/QuoteSection";
 import About from "@/components/About";
-import Class from "@/components/Class";
+import Instruments from "@/components/Instruments";
 import Whyrethme from "@/components/Whyrethme";
 import OurPrograms from "@/components/OurPrograms";
 import Testimonials from "@/components/Testimonials";
@@ -60,7 +60,7 @@ export default function Home() {
           case "about":
             return <About key={module._key} data={module} />;
           case "ourClass":
-            return <Class key={module._key} data={module} />;
+            return <Instruments key={module._key} data={module} />;
           case "why":
             return <Whyrethme key={module._key} data={module} />;
           case "program":

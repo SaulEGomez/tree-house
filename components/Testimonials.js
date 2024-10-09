@@ -24,7 +24,7 @@ function Testimonials({ data }) {
   const inView = useInView(ref, { once: true });
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   return (
-    <div className="testimonial w-full bg-color-1 h-auto">
+    <div className="testimonial w-full bg-color-1 h-auto py-[40px] my-[80px]">
       <div
         ref={ref}
         className="w-full py-[100px] px-[30px] lg:px-[60px] flex flex-col items-center justify-center gap-7 leading-tight"
@@ -57,7 +57,7 @@ function Testimonials({ data }) {
               <div className="flex flex-col gap-7 p-4 items-center" key={i}>
                 <Image
                   src={quotesimg}
-                  className="text-center w-[80px] h-[80px] object-fill"
+                  className="text-center w-[80px] h-[80px] object-fill "
                   alt={`Testimonial ${i}`}
                 />
                 <p className="text-[18px] text-center leading-tight w-full text-gray-700">

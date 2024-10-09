@@ -17,7 +17,7 @@
     "framer-motion": "^11.5.5",
     "groq": "^3.58.0",
     "lucide-react": "^0.441.0",
-    "next": "^14.2.12",
+    "next": "^14.2.14",
     "next-sanity": "^9.5.0",
     "react": "^18",
     "react-countup": "^6.5.3",

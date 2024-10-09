@@ -22,7 +22,7 @@ function About({ data }) {
               initial={{ opacity: 0, y: 180 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={isMobile ? { duration: 0.75 } : { duration: 1 }}
-              className="text-red-600 tracking-wider text-[20px]"
+              className="text-green-600 tracking-wider text-[20px]"
             >
               {subtitle}
             </motion.span>
@@ -62,7 +62,7 @@ function About({ data }) {
                 }
                 className="flex items-center gap-[15px] my-[16px]"
               >
-                <div className="w-[18px] h-[18px] rounded-full bg-red-600 text-white flex items-center justify-center">
+                <div className="w-[18px] h-[18px] rounded-full bg-green-600 text-white flex items-center justify-center">
                   <FaCheck className="text-[12px] font-semibold" />
                 </div>
                 <p className="text-black text-[18px] font-medium">{item}</p>
