@@ -22,6 +22,7 @@ function FormWrapper() {
     pastExperience: "",
     availability: [],
     additionalComments: "",
+    CMPValue:"",
   });
 
   const updateFormData = (newData) => {
@@ -36,10 +37,12 @@ function FormWrapper() {
     { title: "Instruments" },
     { title: "Experience" },
     { title: "Availability" },
-    { title: "Message" },
+    { title: "CMP" },
   ];
 
-  
+// const  handleSubmit=()=>{
+//   alert(JSON.stringify(formData))
+// }  
 
   const checkEmptyField = (e) => {
     if (formData.firstname && formData.lastname) {
@@ -52,6 +55,7 @@ function FormWrapper() {
         pastExperience: "",
         availability: [],
         additionalComments: "",
+        CMPValue:"",
       });
 
       setTimeout(() => {
@@ -147,7 +151,7 @@ function FormWrapper() {
                       : ""
                   } ${
                     index < activeStep
-                      ? "text-blue-600 after:border-green-500 dark:text-blue-500 dark:after:border-blue-800 transition-all duration-500 cursor-pointer"
+                      ? "text-blue-600 after:border-green-500  transition-all duration-500 cursor-pointer"
                       : "after:border-gray-100 dark:after:border-gray-700"
                   }`}
                 >

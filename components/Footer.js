@@ -40,10 +40,10 @@ function Footer({ data }) {
     return data.menus.map((item, index) => (
       <div key={index} className="flex flex-col gap-2 items-start ">
         <h3 className="text-white text-[26px] ">{item.title}</h3>
-        <span className=" w-[50px] border-t-[2px] border-t-red-500"></span>
+        <span className=" w-[50px] border-t-[2px] border-t-green-500"></span>
         {
           item.subLinks.map((subItem, subIndex) => (
-            <p key={subIndex} className="text-[18px] hover:text-red-500 cursor-pointer">
+            <p key={subIndex} className="text-[18px] hover:text-green-500 cursor-pointer">
               <Link to={subItem.url} smooth={true} duration={500}>
                 {subItem.title}
               </Link>
@@ -57,13 +57,13 @@ function Footer({ data }) {
   return (
     <div className="w-full bg-black ">
       <div>
-        <div className="w-full flex flex-col lg:flex-row px-4 lg:px-8 justify-center items-center py-8">
-          <div className="flex flex-col md:flex-row justify-between basis-[47%] flex-wrap text-white px-8">
+        <div className="w-full flex  lg:flex-row px-4 lg:px-8 justify-center items-center md:justify-start md:items-start py-8">
+          {/* <div className="flex flex-col md:flex-row justify-between basis-[47%] flex-wrap text-white px-8">
             {renderMenus()}
-          </div>
-          <div className="  flex flex-col items-start justify-start basis-[47%] gap-4 px-8">
+          </div> */}
+          <div className=" w-full flex flex-col items-start justify-start max-w-[600px] gap-4 px-8">
             <h3 className="text-white text-[26px] ">Newsletter</h3>
-            <span className=" w-[50px] border-t-[2px] border-t-red-500"></span>
+            <span className=" w-[50px] border-t-[2px] border-t-green-500"></span>
             <p className="text-white my-2 tracking-wide">
               {data.newsletterText}
             </p>
@@ -98,7 +98,7 @@ function Footer({ data }) {
               return (
                 <li key={key}
 
-                  className={key === 0 ? 'text-[22px] text-red-600 hover:text-red-600' : 'text-xl text-white hover:text-red-600'}>
+                  className={key === 0 ? 'text-[22px] text-green-600 hover:text-green-600' : 'text-xl text-white hover:text-green-600'}>
                   <a href={data.socialMediaGroup[icon]} target="_blank" rel="noopener noreferrer">
                     {iconMap[icon]}
                   </a>

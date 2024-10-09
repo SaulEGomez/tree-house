@@ -17,13 +17,13 @@ function QuoteSection({ data }) {
         <div className="md:w-full flex flex-col gap-[45px] items-center md:justify-evenly md:flex-row md:gap-[60px]">
           <div className="flex flex-col justify-center items-center leading-tight">
             <h1 className="text-[55px] font-semibold">{totalUsersCount}</h1>
-            <span className="text-[17px] font-semibold text-red-600 tracking-widest">
+            <span className="text-[17px] font-semibold text-green-500 tracking-widest">
               {totalUsersLabel}
             </span>
           </div>
           <div className="flex flex-col justify-center items-center leading-tight">
             <h1 className="text-[55px] font-semibold">{ratingValue}</h1>
-            <span className="text-[17px] font-semibold text-red-600 tracking-widest">
+            <span className="text-[17px] font-semibold text-green-500 tracking-widest">
               {ratingLabel}
             </span>
           </div>

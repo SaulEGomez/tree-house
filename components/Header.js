@@ -20,7 +20,7 @@ function Header({data}) {
             
            {data.menuItems.map((item,i)=>{
             return(
-              <li key={i} className="text-[17px] hover:text-red-600 cursor-pointer  transition-all duration-300 font-medium focus:text-red-600">
+              <li key={i} className="text-[17px] hover:text-green-600 cursor-pointer  transition-all duration-300 font-medium focus:text-green-600">
               <Link to={item.link} smooth={true} duration={500}>
                 {item.title}
               </Link>

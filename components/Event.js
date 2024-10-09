@@ -66,7 +66,7 @@ function Event() {
                 initial={{opacity:0,y:150}}
                 animate={inview?{opacity:1,y:0}:{}}
                 transition={isMobile?{duration:0.75}:{duration:1}}
-                className="text-[18px] text-red-600 font-medium mb-[-5px] text-center">OUR EVENT</motion.span>
+                className="text-[18px] text-green-600 font-medium mb-[-5px] text-center">OUR EVENT</motion.span>
                 <motion.h1
                 initial={{opacity:0,y:150}}
                 animate={inview?{opacity:1,y:0}:{}}
