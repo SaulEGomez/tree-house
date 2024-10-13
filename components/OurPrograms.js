@@ -81,16 +81,14 @@ function OurPrograms({ data }) {
                   </div>
                   <hr />
                   <h2 className="my-6 text-[25px] font-semibold tracking-wider">{card.titleBottom}</h2>
-                  <div className="flex items-center gap-4">
+                  {card.list.map((item, i)=>(
+                    <div key={i} className="flex items-center gap-4">
                     <FaCheck className="text-green-600" />
-                    <p className="text-[16px] font-medium">{card.list[0]}</p>
+                    <p className="text-[16px] font-medium">{item}</p>
                   </div>
-                  <div className="flex items-center gap-4 my-3 mb-9">
-                    <FaCheck className="text-green-600" />
-                    <p className="text-[16px] font-medium">{card.list[1]}</p>
-                  </div>
+                  ))}
                   <Link to="contact" smooth={true} duration={500}
-                    className="btn flex justify-center items-center outline-none text-[17px] bg-white !important w-[250px] xl:w-[300px] text-black px-6 py-[10px] rounded-[4px] cursor-pointer hover:scale-[0.9] transition-all duration-500 tracking-wider font-medium"
+                    className="btn flex justify-center items-center outline-none text-[17px] bg-white !important w-[250px] xl:w-[300px] text-black px-6 py-[10px] mt-8 rounded-[4px] cursor-pointer hover:scale-[0.9] transition-all duration-500 tracking-wider font-medium"
                   >
                     {card.learnMoreText}
                   </Link>

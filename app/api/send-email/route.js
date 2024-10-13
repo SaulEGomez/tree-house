@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const emailTo = process.env.RESEND_EMAIL_TO || 'onboarding@resend.dev';
-const emailFrom = process.env.RESEND_EMAIL_FROM || 'saegomez@ucsc.edu';
+const emailTo = process.env.RESEND_EMAIL_TO || 'emailtreehousemusic@gmail.com';
+const emailFrom = process.env.RESEND_EMAIL_FROM || 'onboarding@resend.dev';
 
 export async function POST(req) {
   try {
