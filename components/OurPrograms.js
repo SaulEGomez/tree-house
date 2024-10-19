@@ -20,8 +20,8 @@ function OurPrograms({ data }) {
     return {
       ...card, // Spread operator to include all card properties [ toFixed(2)]
       price: `${card.price}`,
-      class: card.learnMoreButton.url, // URL for Learn More button
-      learnMoreText: card.learnMoreButton.text, // Text for Learn More button
+      class: card.learnMoreButton?.url,
+      learnMoreText: card.learnMoreButton?.text, // Text for Learn More button
       ref: cardRef,
       InView: cardInView,
     };

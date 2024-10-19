@@ -2,7 +2,7 @@
 import Slider from "react-slick"; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import quotesimg from "../assets/quotesimg.png";
+import quotesimg from "../assets/quote-svgrepo-com.svg";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
