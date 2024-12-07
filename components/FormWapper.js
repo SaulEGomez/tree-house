@@ -18,6 +18,7 @@ function FormWrapper() {
     firstname: "",
     lastname: "",
     email:"",
+    phone:"",
     instruments: [],
     pastExperience: "",
     availability: [],
@@ -30,6 +31,7 @@ function FormWrapper() {
     setFirstNameError(false);
     setLastNameError(false);
     setemailError(false);
+    setPhoneError(false);
   };
 
   const steps = [
@@ -51,6 +53,7 @@ function FormWrapper() {
         firstname: "",
         lastname: "",
         email:"",
+        phone:"",
         instruments: [],
         pastExperience: "",
         availability: [],
@@ -85,6 +88,7 @@ function FormWrapper() {
             firstnameError={firstnameError}
             lastnameError={lastnameError}
             emailError={emailError}
+            phoneError={phoneError}
           />
         );
       case 1:
@@ -99,6 +103,8 @@ function FormWrapper() {
         return null;
     }
   };
+
+  const [phoneError, setPhoneError] = useState(false);
 
   const checkInputField = () => {
     let isValid = true;
@@ -122,6 +128,13 @@ function FormWrapper() {
       setemailError(false);
     }
 
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!formData.phone || !phoneRegex.test(formData.phone)) {
+      setPhoneError(true);
+      isValid = false;
+    } else {
+      setPhoneError(false);
+    }
     if (isValid) {
       setActiveStep(activeStep + 1);
     }

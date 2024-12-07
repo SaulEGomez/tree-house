@@ -6,6 +6,7 @@ export default function FormStep1({
   firstnameError,
   lastnameError,
   emailError,
+  phoneError, 
 }) {
   return (
     <div className=" flex flex-col w-full max-w-full h-auto">
@@ -35,6 +36,14 @@ export default function FormStep1({
           value={formData.email}
           onChange={(e) => updateFormData({ email: e.target.value })}
           className={`${emailError ? "border-red-500" : "border-white"} w-[100%] max-w-[500px] mx-auto bg-transparent p-2 border-[1px]  rounded-[7px] text-lg focus:border-opacity-0 outline-none  m-2 h-[53px] placeholder:text-gray-300 min-w-[230px]`}
+          required=""
+        />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          value={formData.phone}
+          onChange={(e) => updateFormData({ phone: e.target.value })}
+          className={`${phoneError ? "border-red-500" : "border-white"} w-[100%] max-w-[500px] mx-auto bg-transparent p-2 border-[1px] rounded-[7px] text-lg focus:border-opacity-0 outline-none m-2 h-[53px] placeholder:text-gray-300 min-w-[230px]`}
           required=""
         />
       </div>

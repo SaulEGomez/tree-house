@@ -11,6 +11,7 @@ export async function POST(req) {
       firstname,
       lastname,
       email,
+      phone,
       instruments,
       pastExperience,
       availability,
@@ -100,6 +101,10 @@ export async function POST(req) {
                 <td>${email}</td>
               </tr>
               <tr>
+                <td><strong>Phone Number</strong></td>
+                <td>${phone}</td>
+              </tr>
+              <tr>  
                 <td><strong>Instruments</strong></td>
                 <td>${instruments.join(', ')}</td>
               </tr>

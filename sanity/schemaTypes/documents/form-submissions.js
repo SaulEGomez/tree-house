@@ -22,6 +22,12 @@ export default {
       readOnly: true,
     },
     {
+      name: 'phone',
+      title: 'Phone Number',
+      type: 'string',
+      readOnly: true,
+    },
+    {
       name: 'instruments',
       title: 'Instruments',
       type: 'array',
