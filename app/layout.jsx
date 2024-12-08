@@ -1,4 +1,4 @@
-'use client'; // Ensure this component runs on the client side
+'use client'; // Ensures this component runs on the client side
 import React, { useEffect, useState } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -21,14 +21,6 @@ const geistMono = localFont({
 // Sanity query for site settings
 const query = groq`*[_type == "siteSettings"][0]`;
 
-function generateMetadata(siteSettings) {
-  return {
-    title: siteSettings?.seo?.title || "Default Title",
-    description: siteSettings?.seo?.description || "Default Description",
-    keywords: siteSettings?.seo?.keywords || "default, keywords",
-  };
-}
-
 export default function RootLayout({ children }) {
   const [siteSettings, setSiteSettings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,29 +34,52 @@ export default function RootLayout({ children }) {
     fetchData();
   }, []);
 
-  const { title, description, keywords } = generateMetadata(siteSettings);
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="loader" />
+      </div>
+    );
+  }
+
+  const seo = siteSettings?.seo || {};
+  const baseSettings = siteSettings?.baseSettings || {};
   const faviconUrl = siteSettings?.favicon ? urlFor(siteSettings.favicon).url() : null;
+  const ogImage = seo.image ? urlFor(seo.image).url() : "/default-og-image.jpg"; // Fallback for OG image
 
   return (
     <html lang="en">
       <head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
+        {/* SEO Metadata */}
+        <title>{seo.title || "Default Title"}</title>
+        <meta name="description" content={seo.description || "Default Description"} />
+        <meta name="keywords" content={seo.keywords || "default, keywords"} />
+
+        {/* Favicon */}
         {faviconUrl && <link rel="icon" href={faviconUrl} />}
+
+        {/* Open Graph (OG) Tags */}
+        <meta property="og:title" content={seo.title || "Default Title"} />
+        <meta property="og:description" content={seo.description || "Default Description"} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content={seo.url || "https://example.com"} />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Metadata */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo.title || "Default Title"} />
+        <meta name="twitter:description" content={seo.description || "Default Description"} />
+        <meta name="twitter:image" content={ogImage} />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Show loader while fetching */}
-        {loading ? (
-          <div className="loader-container">
-            <div className="loader" />
-          </div>
-        ) : (
-          <>
-            <BaseSettings baseSettings={siteSettings?.baseSettings} />
-            {children}
-          </>
-        )}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{
+          backgroundColor: baseSettings.bg1 || "#fff", // Main background color
+          color: baseSettings.textBlack || "#000", // Text color
+        }}
+      >
+        <BaseSettings baseSettings={baseSettings} />
+        {children}
       </body>
     </html>
   );
