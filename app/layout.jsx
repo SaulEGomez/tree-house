@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content={description} />
         <meta property="og:site_name" content={siteName} />
         {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL || "https://treehousemusic.org"} />
 
         {/* Twitter Card Metadata */}
         <meta name="twitter:card" content="summary_large_image" />
