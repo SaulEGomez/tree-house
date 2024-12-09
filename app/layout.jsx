@@ -44,6 +44,7 @@ export default function RootLayout({ children }) {
   const title = siteSettings?.seo?.title || "Default Title";
   const description = siteSettings?.seo?.description || "Default Description";
   const keywords = siteSettings?.seo?.keywords || "default, keywords";
+  const siteName = siteSettings?.siteName || "Default Site Name"; // Added for og:site_name
   const faviconUrl = siteSettings?.favicon ? urlFor(siteSettings.favicon).url() : "/favicon.ico";
   const ogImageUrl = siteSettings?.seo?.ogImage ? urlFor(siteSettings.seo.ogImage).url() : "/og-image.jpg";
 
@@ -60,9 +61,9 @@ export default function RootLayout({ children }) {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:site_name" content={siteName} />
+        <meta property="og:site_name" content={siteName} /> {/* Added site_name */}
         {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL || "https://treehousemusic.org"} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"} />
 
         {/* Twitter Card Metadata */}
         <meta name="twitter:card" content="summary_large_image" />
