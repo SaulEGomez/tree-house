@@ -41,10 +41,10 @@ export default function RootLayout({ children }) {
   }, []);
 
   // Fallbacks for metadata
-  const title = siteSettings?.seo?.title || "TreeHouse Music";
+  const title = siteSettings?.seo?.title || "Treehouse Music";
   const description = siteSettings?.seo?.description || "Our mission is to create an inspiring and supportive environment where students learn to love music through a blend of the songs they cherish and the essential building blocks of musical education. We are committed to fostering meaningful connections between teachers and students, nurturing self-confidence, and encouraging growth through the power of productive failure.";
   const keywords = siteSettings?.seo?.keywords || "music lessons, music teacher, music instructor, lessons, music education, guitar lessons, piano lessons, ukulele lessons, pasadena,  los angeles, glendale, altadena, tutoring";
-  const siteName = siteSettings?.siteName || "TreeHouse Music"; // Added for og:site_name
+  const siteName = siteSettings?.siteName || "Treehouse Music"; // Added for og:site_name
   const faviconUrl = siteSettings?.favicon ? urlFor(siteSettings.favicon).url() : "/favicon.ico";
   const ogImageUrl = siteSettings?.seo?.ogImage ? urlFor(siteSettings.seo.ogImage).url() : "/og-image.jpg";
 
