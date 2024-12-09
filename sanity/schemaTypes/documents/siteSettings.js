@@ -36,12 +36,24 @@ export default defineType({
         defineField({
           name: 'keywords',
           title: 'Keywords',
-          type: 'string', // Change from 'array' to 'string'
+          type: 'string',
           description: 'Enter keywords separated by commas (e.g., my, keyword, is, here)',
+        }),
+        defineField({
+          name: 'ogImage',
+          title: 'Open Graph Image',
+          type: 'image',
+          description: 'Image used for social media link previews.',
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: 'twitterHandle',
+          title: 'Twitter Handle',
+          type: 'string',
+          description: 'Twitter username (e.g., @yourhandle).',
         }),
       ],
     }),
-
     defineField({
       name: 'baseSettings',
       title: 'Theme Settings',
@@ -89,5 +101,5 @@ export default defineType({
 
 // Function to convert keywords string to an array
 export const getKeywordsArray = (keywordsString) => {
-  return keywordsString ? keywordsString.split(',').map(keyword => keyword.trim()) : [];
+  return keywordsString ? keywordsString.split(',').map((keyword) => keyword.trim()) : [];
 };
