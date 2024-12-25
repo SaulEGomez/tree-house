@@ -103,7 +103,7 @@ function Hero({ data }) {
                   ? { duration: 0.75, delay: 0.3 }
                   : { duration: 1, delay: 0.3 }
               }
-              className=" mt-[-38px] text-red text-[65px] md:text-[77px] mlg:text-[88px]  mx-auto font-semibold tracking-wide text-center leading-tight"
+              className=" mt-[-38px] text-red text-[50px] md:text-[62px] mlg:text-[73px]  mx-auto font-semibold tracking-wide text-center leading-tight"
             >
               {redTitle}
             </motion.h1>
