@@ -67,7 +67,7 @@ function Hero({ data }) {
               <img
                 src={_topImage}
                 alt="saxophone"
-                className=" max-w-[72px] md:max-w-[80px] pt-8"
+                className=" max-w-[150px] md:max-w-[200px] pt-8"
               />
             </motion.div>
 
