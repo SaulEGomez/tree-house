@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Contact from '@/components/Contact';
 
