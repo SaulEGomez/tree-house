@@ -19,46 +19,38 @@ function Header({ data }) {
         <nav className="hidden lg:block">
           <ul className="flex justify-evenly gap-7 mr-[-30px] items-center">
             {data.menuItems.map((item, i) => {
-              if (item.isInternal) {
-                // Handle internal links
+              if (item.title.toLowerCase() === "contact") {
+                // Redirect Contact to the /contact page
                 return (
                   <li
                     key={i}
                     className="text-[17px] hover:text-green-600 cursor-pointer transition-all duration-300 font-medium focus:text-green-600"
                   >
-                    <Link href={item.link}>{item.title}</Link>
-                  </li>
-                );
-              } else if (item.link.startsWith("#")) {
-                // Handle scroll-based links (e.g., #about)
-                return (
-                  <li
-                    key={i}
-                    className="text-[17px] hover:text-green-600 cursor-pointer transition-all duration-300 font-medium focus:text-green-600"
-                  >
-                    <ScrollLink to={item.link.slice(1)} smooth={true} duration={500}>
-                      {item.title}
-                    </ScrollLink>
-                  </li>
-                );
-              } else {
-                // Handle external links
-                return (
-                  <li
-                    key={i}
-                    className="text-[17px] hover:text-green-600 cursor-pointer transition-all duration-300 font-medium focus:text-green-600"
-                  >
-                    <a href={item.link} target="_blank" rel="noopener noreferrer">
-                      {item.title}
-                    </a>
+                    <Link href="/contact">{item.title}</Link>
                   </li>
                 );
               }
+
+              // Default behavior for other items
+              return (
+                <li
+                  key={i}
+                  className="text-[17px] hover:text-green-600 cursor-pointer transition-all duration-300 font-medium focus:text-green-600"
+                >
+                  <ScrollLink to={item.link} smooth={true} duration={500}>
+                    {item.title}
+                  </ScrollLink>
+                </li>
+              );
             })}
           </ul>
         </nav>
         <div className="hidden lg:block">
-          <ScrollLink to={data.specialButton.link} smooth={true} duration={500}>
+          <ScrollLink
+            to={data.specialButton.link}
+            smooth={true}
+            duration={500}
+          >
             <button className="btn flex justify-center items-center outline-none border-none bg-black w-[220px] text-white px-6 py-[10px] rounded-[4px] cursor-pointer hover:scale-[0.9] transition-all duration-500 tracking-wider">
               {data.specialButton.label}
             </button>
@@ -85,41 +77,33 @@ function Header({ data }) {
               <nav>
                 <ul className="flex flex-col justify-evenly gap-4 mr-[-30px] items-start ml-[14px]">
                   {data.menuItems.map((item, i) => {
-                    if (item.isInternal) {
-                      // Handle internal links
+                    if (item.title.toLowerCase() === "contact") {
+                      // Redirect Contact to the /contact page
                       return (
                         <li
                           key={i}
                           className="text-[17px] hover:text-red-600 cursor-pointer transition-all duration-300 font-medium focus:text-red-600"
                         >
-                          <Link href={item.link}>{item.title}</Link>
-                        </li>
-                      );
-                    } else if (item.link.startsWith("#")) {
-                      // Handle scroll-based links
-                      return (
-                        <li
-                          key={i}
-                          className="text-[17px] hover:text-red-600 cursor-pointer transition-all duration-300 font-medium focus:text-red-600"
-                        >
-                          <ScrollLink to={item.link.slice(1)} smooth={true} duration={500}>
-                            {item.title}
-                          </ScrollLink>
-                        </li>
-                      );
-                    } else {
-                      // Handle external links
-                      return (
-                        <li
-                          key={i}
-                          className="text-[17px] hover:text-red-600 cursor-pointer transition-all duration-300 font-medium focus:text-red-600"
-                        >
-                          <a href={item.link} target="_blank" rel="noopener noreferrer">
-                            {item.title}
-                          </a>
+                          <Link href="/contact">{item.title}</Link>
                         </li>
                       );
                     }
+
+                    // Default behavior for other items
+                    return (
+                      <li
+                        key={i}
+                        className="text-[17px] hover:text-red-600 cursor-pointer transition-all duration-300 font-medium focus:text-red-600"
+                      >
+                        <ScrollLink
+                          to={item.link}
+                          smooth={true}
+                          duration={500}
+                        >
+                          {item.title}
+                        </ScrollLink>
+                      </li>
+                    );
                   })}
                 </ul>
               </nav>
