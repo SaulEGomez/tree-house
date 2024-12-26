@@ -1,5 +1,5 @@
-'use client'; // Ensures the component runs on the client-side
-import React, { useEffect, useState } from 'react';
+"use client"; // Ensures the component runs on the client-side
+import React, { useEffect, useState } from "react";
 import { client } from "../sanity/lib/client";
 import { groq } from "next-sanity";
 import Header from "@/components/Header";
@@ -10,8 +10,7 @@ import Instruments from "@/components/Instruments";
 import Whyrethme from "@/components/Whyrethme";
 import OurPrograms from "@/components/OurPrograms";
 import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer"; // Removed Contact import
 
 const query = groq`*[_type == "page" && slug.current == "home"][0]{
   ...,
@@ -67,9 +66,7 @@ export default function Home() {
             return <OurPrograms key={module._key} data={module} />;
           case "testimonial":
             return <Testimonials key={module._key} data={module} />;
-          case "contact":
-            return <Contact key={module._key} data={module} />;
-          // Add other cases for additional module types here
+          // Removed the "contact" case
           default:
             return null; // Return nothing for unknown types
         }
