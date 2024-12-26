@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import Contact from '@/components/Contact';
 
 // Define a GROQ query to fetch contact-specific data
