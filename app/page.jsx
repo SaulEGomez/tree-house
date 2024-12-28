@@ -67,7 +67,8 @@ export default function Home() {
             return <OurPrograms key={module._key} data={module} />;
           case "testimonial":
             return <Testimonials key={module._key} data={module} />;
-          // Removed the "contact" case
+          case "contact":
+            return <Contact key={module._key} data={module} />;
           default:
             return null; // Return nothing for unknown types
         }
