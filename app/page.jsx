@@ -11,6 +11,7 @@ import Whyrethme from "@/components/Whyrethme";
 import OurPrograms from "@/components/OurPrograms";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer"; // Removed Contact import
+import Contact from "@/components/Contact";
 
 const query = groq`*[_type == "page" && slug.current == "home"][0]{
   ...,
