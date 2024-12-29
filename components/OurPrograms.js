@@ -50,7 +50,7 @@ function OurPrograms({ data }) {
           >
             {data.title}
           </motion.h1>
-          <div className="max-w-3xl bg-white shadow-lg border border-gray-200 rounded-lg p-6 text-center mt-4">
+          <div className="max-w-full bg-white shadow-lg border border-gray-200 rounded-lg p-6 text-center mt-4">
             <motion.p
               initial={{ opacity: 0, y: 180 }}
               animate={InView1 ? { opacity: 1, y: 1 } : {}}
