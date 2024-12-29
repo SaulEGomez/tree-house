@@ -40,14 +40,16 @@ function Instruments({ data }) {
             >
               {data.title}
             </motion.h1>
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 180 }}
               animate={InView1 ? { opacity: 1, y: 0 } : {}}
               transition={isMobile ? { duration: 0.75, delay: 0.2 } : { duration: 1, delay: 0.2 }}
-              className="text-center"
+              className="max-w-5xl mx-auto bg-white shadow-lg border border-gray-200 rounded-lg p-6 text-center mt-4"
             >
-              {data.description}
-            </motion.p>
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                {data.description}
+              </p>
+            </motion.div>
           </div>
           <div className="w-full h-auto mx-auto mb-[28px]" ref={ref2}>
             <ul className="grid grid-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 px-[8px] py-[16px] w-full">
