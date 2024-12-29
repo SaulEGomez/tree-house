@@ -4,12 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import Contact from '@/components/Contact';
 
 // Define a GROQ query to fetch contact-specific data
 const query = groq`*[_type == "page" && slug.current == "contact"][0]{
-  "header": *[_type == "header"][0],
   "footer": *[_type == "footer"][0],
   modules[]{
     ...,
@@ -46,7 +44,6 @@ export default function ContactPage() {
 
   return (
     <main className="w-full">
-      <Header data={data.header} />
       <Contact data={contactData} />
       <Footer data={data.footer} />
     </main>
