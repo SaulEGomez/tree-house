@@ -50,14 +50,16 @@ function OurPrograms({ data }) {
           >
             {data.title}
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 180 }}
-            animate={InView1 ? { opacity: 1, y: 1 } : {}}
-            transition={isMobile ? { duration: 0.75, delay: 0.2 } : { duration: 1, delay: 0.2 }}
-            className="text-center"
-          >
-            {data.description}
-          </motion.p>
+          <div className="max-w-3xl bg-white shadow-lg border border-gray-200 rounded-lg p-6 text-center mt-4">
+            <motion.p
+              initial={{ opacity: 0, y: 180 }}
+              animate={InView1 ? { opacity: 1, y: 1 } : {}}
+              transition={isMobile ? { duration: 0.75, delay: 0.2 } : { duration: 1, delay: 0.2 }}
+              className="text-lg md:text-xl text-gray-700 leading-relaxed"
+            >
+              {data.description}
+            </motion.p>
+          </div>
         </div>
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-9">
