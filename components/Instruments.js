@@ -44,7 +44,7 @@ function Instruments({ data }) {
               initial={{ opacity: 0, y: 180 }}
               animate={InView1 ? { opacity: 1, y: 0 } : {}}
               transition={isMobile ? { duration: 0.75, delay: 0.2 } : { duration: 1, delay: 0.2 }}
-              className="max-w-5xl mx-auto bg-white shadow-lg border border-gray-200 rounded-lg p-6 text-center mt-4"
+              className="max-w-full mx-auto bg-white shadow-lg border border-gray-200 rounded-lg p-6 text-center mt-4"
             >
               <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
                 {data.description}
