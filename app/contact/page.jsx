@@ -13,7 +13,7 @@ const query = groq`*[_type == "page" && slug.current == "contact"][0]{
     ...,
   }
 }`;
-
+// comment test 
 export default function ContactPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
