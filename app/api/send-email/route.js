@@ -37,7 +37,6 @@ export async function POST(req) {
         pastExperience,
         availability = [],
         additionalComments,
-        CMPValue,
       } = formData;
 
       const availabilityFormatted = availability
@@ -103,7 +102,6 @@ export async function POST(req) {
                 <tr><td>Past Experience</td><td>${pastExperience}</td></tr>
                 <tr><td>Availability</td><td><ul>${availabilityFormatted}</ul></td></tr>
                 <tr><td>Additional Comments</td><td>${additionalComments}</td></tr>
-                <tr><td>CMP Value</td><td>${CMPValue}</td></tr>
               </table>
             </div>
           </body>

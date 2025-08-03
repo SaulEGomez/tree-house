@@ -1,6 +1,7 @@
 "use client";
 import Electricguitar from "@/assets/Guitaricon.png";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const Instruments = [
   {
@@ -27,9 +28,25 @@ const Instruments = [
     title: "Bass Guitar",
     img: Electricguitar, 
   },
+  {
+    title: "Other",
+    img: Electricguitar, 
+  },
 ];
 
 export default function FormStep2({ updateFormData, formData }) {
+  const [otherInstrument, setOtherInstrument] = useState("");
+
+  // Initialize otherInstrument from formData if it exists
+  useEffect(() => {
+    const other = Array.isArray(formData.instruments) 
+      ? formData.instruments.find(inst => !Instruments.some(i => i.title === inst))
+      : "";
+    if (other) {
+      setOtherInstrument(other);
+    }
+  }, []);
+
   const handleInstrumentChange = (e) => {
     const { value, checked } = e.target;
 
@@ -37,14 +54,54 @@ export default function FormStep2({ updateFormData, formData }) {
       ? [...formData.instruments]
       : [];
 
-    if (checked) {
-      updatedInstruments.push(value);
+    if (value === "Other") {
+      if (checked) {
+        // Add "Other" to the list and include the custom instrument if it exists
+        if (otherInstrument.trim()) {
+          updatedInstruments.push(otherInstrument.trim());
+        } else {
+          updatedInstruments.push("Other");
+        }
+      } else {
+        // Remove the custom instrument or "Other" from the list
+        updatedInstruments = updatedInstruments.filter(
+          (instrument) => instrument !== otherInstrument.trim() && instrument !== "Other"
+        );
+      }
     } else {
-      updatedInstruments = updatedInstruments.filter(
-        (instrument) => instrument !== value
-      );
+      if (checked) {
+        updatedInstruments.push(value);
+      } else {
+        updatedInstruments = updatedInstruments.filter(
+          (instrument) => instrument !== value
+        );
+      }
     }
 
+    updateFormData({ instruments: updatedInstruments });
+  };
+
+  const handleOtherInputChange = (e) => {
+    const value = e.target.value;
+    setOtherInstrument(value);
+    
+    // Update the formData with the custom instrument
+    let updatedInstruments = Array.isArray(formData.instruments)
+      ? [...formData.instruments]
+      : [];
+    
+    // Remove the old "Other" or custom instrument
+    updatedInstruments = updatedInstruments.filter(
+      (instrument) => instrument !== otherInstrument && instrument !== "Other"
+    );
+    
+    // Add the new custom instrument if it's not empty, otherwise add "Other"
+    if (value.trim()) {
+      updatedInstruments.push(value.trim());
+    } else if (updatedInstruments.includes("Other") || otherInstrument) {
+      updatedInstruments.push("Other");
+    }
+    
     updateFormData({ instruments: updatedInstruments });
   };
 
@@ -54,12 +111,17 @@ export default function FormStep2({ updateFormData, formData }) {
         <h3 className="mb-4 text-lg md:text-2xl font-medium text-white w-full mt-4">
           Choose your instruments:
         </h3>
-        <ul className="grid w-full gap-3 gap-x-6 md:gap-6 grid-cols-2 md:grid-cols-3">
+        <ul className="grid w-full gap-2 gap-x-3 md:gap-4 grid-cols-3 sm:grid-cols-4 md:grid-cols-4">
           {Instruments.map((inst, i) => {
+            const isChecked = Array.isArray(formData.instruments) &&
+              (formData.instruments.includes(inst.title) ||
+               (inst.title === "Other" &&
+                formData.instruments.some(instr => !Instruments.some(i => i.title === instr))));
+
             return (
               <li
                 key={i}
-                className="flex flex-col gap-1 font-medium text-[15px] md:text-[17px]"
+                className="flex flex-col gap-1 font-medium text-[12px] md:text-[14px]"
               >
                 <input
                   type="checkbox"
@@ -67,27 +129,33 @@ export default function FormStep2({ updateFormData, formData }) {
                   value={inst.title}
                   className="hidden peer "
                   onChange={handleInstrumentChange}
-                  checked={
-                    Array.isArray(formData.instruments) &&
-                    formData.instruments.includes(inst.title)
-                  }
+                  checked={isChecked}
                 />
                 <label
                   htmlFor={inst.title}
-                  className="inline-flex items-center justify-between max-w-[120px] md:max-w-[140px] h-[80px] md:h-[120px]  text-white border-2 border-white border-opacity-0 rounded-lg cursor-pointer peer-checked:border-white peer-checked:border-opacity-1 p-3  md:p-[10px] shadow-sm shadow-[#aa6646] hover:scale-[1.02] transition duration-300"
+                  className="inline-flex items-center justify-between max-w-[80px] sm:max-w-[90px] md:max-w-[100px] h-[60px] md:h-[80px] text-white border-2 border-white border-opacity-0 rounded-lg cursor-pointer peer-checked:border-white peer-checked:border-opacity-1 p-2 md:p-3 shadow-sm shadow-[#aa6646] hover:scale-[1.02] transition duration-300"
                 >
                   <div className="block">
                     <div className="w-full text-sm font-semibold text-center">
                       <Image
                         src={inst.img}
                         alt={inst.title}
-                        width={70}
-                        height={65}
-                        className="mx-auto text-center w-[40px] md:w-[70px] max-h-[42px] md:max-h-[65px]"
+                        width={40}
+                        height={40}
+                        className="mx-auto text-center w-[25px] sm:w-[30px] md:w-[40px] max-h-[25px] sm:max-h-[30px] md:max-h-[40px]"
                       />
-                      <p className="mt-1 text-center text-[13px] md:text-sm">
+                      <p className="mt-1 text-center text-[10px] sm:text-[11px] md:text-[12px]">
                         {inst.title}
                       </p>
+                      {inst.title === "Other" && isChecked && (
+                        <input
+                          type="text"
+                          value={otherInstrument}
+                          onChange={handleOtherInputChange}
+                          placeholder="Specify..."
+                          className="mt-1 w-full px-1 py-1 text-black text-[10px] rounded"
+                        />
+                      )}
                     </div>
                   </div>
                 </label>

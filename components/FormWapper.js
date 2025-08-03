@@ -23,7 +23,6 @@ function FormWrapper() {
     pastExperience: "",
     availability: [],
     additionalComments: "",
-    CMPValue:"",
   });
 
   const updateFormData = (newData) => {
@@ -39,7 +38,6 @@ function FormWrapper() {
     { title: "Instruments" },
     { title: "Experience" },
     { title: "Availability" },
-    { title: "CMP" },
   ];
 
 // const  handleSubmit=()=>{
@@ -58,7 +56,6 @@ function FormWrapper() {
         pastExperience: "",
         availability: [],
         additionalComments: "",
-        CMPValue:"",
       });
 
       setTimeout(() => {
@@ -199,32 +196,38 @@ function FormWrapper() {
           <div style={{ padding: "20px" }} className="w-full">
             {getSectionComponent()}
 
-            {/* Back Button */}
-            {activeStep !== 0 && (
-              <button
-                className="text-[18px] font-semibold px-3 py-2 bg-white rounded-[2px] transition duration-300 text-gray-800 hover:scale-[0.9] hover:bg-[#fcddb0]"
-                onClick={() => setActiveStep(activeStep - 1)}
-              >
-                Back
-              </button>
-            )}
-
-            {/* Next or Send Button */}
-            {activeStep !== steps.length - 1 ? (
-              <button
-                className="float-right text-[18px] font-semibold px-3 py-2 bg-white rounded-[2px] transition duration-300 text-gray-800 hover:scale-[0.9] hover:bg-[#fce5c3]"
-                onClick={checkInputField}
-              >
-                Next
-              </button>
-            ) : (
-              <button
-                onClick={checkEmptyField}
-                className="bg-green-500 text-white px-6 py-2 transition duration-300 hover:scale-[1.03] hover:bg-green-600 rounded-[2px] shadow-sm float-right"
-              >
-                Submit
-              </button>
-            )}
+            {/* Form Navigation Buttons */}
+            <div className="flex justify-between items-center mt-4">
+              {/* Back Button */}
+              {activeStep !== 0 && (
+                <button
+                  className="text-[18px] font-semibold px-3 py-2 bg-white rounded-[2px] transition duration-300 text-gray-800 hover:scale-[0.9] hover:bg-[#fcddb0]"
+                  onClick={() => setActiveStep(activeStep - 1)}
+                >
+                  Back
+                </button>
+              )}
+              
+              {/* Spacer to push buttons to edges */}
+              <div className="flex-grow"></div>
+              
+              {/* Next or Send Button */}
+              {activeStep !== steps.length - 1 ? (
+                <button
+                  className="text-[18px] font-semibold px-3 py-2 bg-white rounded-[2px] transition duration-300 text-gray-800 hover:scale-[0.9] hover:bg-[#fce5c3]"
+                  onClick={checkInputField}
+                >
+                  Next
+                </button>
+              ) : (
+                <button
+                  onClick={checkEmptyField}
+                  className="bg-green-500 text-white px-6 py-2 transition duration-300 hover:scale-[1.03] hover:bg-green-600 rounded-[2px] shadow-sm"
+                >
+                  Submit
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}

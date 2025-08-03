@@ -13,7 +13,13 @@ function OurPrograms({ data }) {
   const isMobile = useMediaQuery({ query: "(max-width: 668px)" });
 
   // Prepare program data with refs and inView hooks
-  const programs = data.cards.map((card, index) => {
+  // Filter out the Certificate of Musical Proficiency (CMP) section
+  const filteredCards = data.cards.filter(card =>
+    !card.title?.toLowerCase().includes('certificate of musical proficiency') &&
+    !card.title?.toLowerCase().includes('cmp')
+  );
+  
+  const programs = filteredCards.map((card, index) => {
     const cardRef = useRef(null);
     const cardInView = useInView(cardRef, { once: true });
     
