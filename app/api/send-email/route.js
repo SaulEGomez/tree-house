@@ -6,7 +6,7 @@ const emailFrom = process.env.RESEND_EMAIL_FROM || 'onboarding@resend.dev';
 
 export async function POST(req) {
   try {
-    const { formData } = await req.json();
+    const { formData, formType } = await req.json();
 
     // Check if the form is a newsletter or full contact form
     const isNewsletter = formData?.email && !formData?.firstname;
@@ -23,6 +23,81 @@ export async function POST(req) {
           <body>
             <h1>New Newsletter Signup</h1>
             <p><strong>Email:</strong> ${email}</p>
+          </body>
+        </html>
+      `;
+    } else if (formType === 'kingdomsound') {
+      // Kingdom Sound Interest Form Submission
+      const {
+        firstname,
+        lastname,
+        email,
+        phone,
+        instruments = [],
+        pastExperience,
+        additionalComments,
+      } = formData;
+
+      subject = 'New Kingdom Sound Interest Form Submission';
+      htmlContent = `
+        <html>
+          <head>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                background-color: #f4f4f4;
+              }
+              .container {
+                background-color: #ffffff;
+                border-radius: 5px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              }
+              h1 {
+                color: #333;
+                text-align: center;
+                font-size: 24px;
+              }
+              table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+              }
+              th, td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+              }
+              th {
+                background-color: #f2f2f2;
+                color: #333;
+              }
+              ul {
+                margin: 10px 0;
+                padding-left: 20px;
+              }
+              li {
+                margin: 5px 0;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h1>New Kingdom Sound Interest Form Submission</h1>
+              <table>
+                <tr><th>Field</th><th>Details</th></tr>
+                <tr><td>First Name</td><td>${firstname}</td></tr>
+                <tr><td>Last Name</td><td>${lastname}</td></tr>
+                <tr><td>Email</td><td>${email}</td></tr>
+                <tr><td>Phone</td><td>${phone}</td></tr>
+                <tr><td>Instruments</td><td>${instruments.join(', ')}</td></tr>
+                <tr><td>Past Experience</td><td>${pastExperience}</td></tr>
+                <tr><td>Additional Comments</td><td>${additionalComments}</td></tr>
+              </table>
+            </div>
           </body>
         </html>
       `;
@@ -43,7 +118,7 @@ export async function POST(req) {
         .map(item => `<li>${item.day}: ${item.fromTime} to ${item.toTime}</li>`)
         .join('');
 
-      subject = 'New Form Submission';
+      subject = 'New Contact Form Submission';
       htmlContent = `
         <html>
           <head>

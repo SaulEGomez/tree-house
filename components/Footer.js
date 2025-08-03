@@ -28,7 +28,7 @@ function Footer({ data }) {
   // Handle newsletter submission
   const handleNewsletterSubmit = (e) => {
     if (validateEmail(email)) {
-      handleSubmit(e, { email: email }, 'newsletter', setLoading, setSuccess)
+      handleSubmit(e, { email: email }, 'newsletter', setLoading, setSuccess, "newsletter");
       setEmail('');
     } else {
       console.error("Invalid email address");

@@ -46,7 +46,7 @@ function FormWrapper() {
 
   const checkEmptyField = (e) => {
     if (formData.firstname && formData.lastname) {
-      handleSubmit(e, formData, "formSubmissions", setLoading, setSuccess);
+      handleSubmit(e, formData, "formSubmissions", setLoading, setSuccess, "general");
       setFormData({
         firstname: "",
         lastname: "",
