@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <main className="w-full">
-      <Header data={data.header} />
+      {data?.header && <Header data={data.header} />}
       {modules.map((module) => {
         switch (module._type) {
           case "hero":
@@ -73,7 +73,7 @@ export default function Home() {
             return null; // Return nothing for unknown types
         }
       })}
-      <Footer data={data.footer} />
+      {data?.footer && <Footer data={data.footer} />}
     </main>
   );
 }

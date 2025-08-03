@@ -6,12 +6,11 @@ import { groq } from 'next-sanity';
 import Footer from '@/components/Footer';
 import KingdomSoundForm from '@/components/KingdomSoundForm';
 
-// Define a GROQ query to fetch contact-specific data
-const query = groq`*[_type == "page" && slug.current == "contact"][0]{
+// Define a GROQ query to fetch Kingdom Sound page data
+const query = groq`*[_type == "page" && slug.current == "kingdomsound"][0]{
+  ...,
   "footer": *[_type == "footer"][0],
-  modules[]{
-    ...,
-  }
+  modules[]
 }`;
 
 export default function KingdomSoundPage() {
@@ -45,7 +44,7 @@ export default function KingdomSoundPage() {
   return (
     <main className="w-full">
       <KingdomSoundForm data={contactData} />
-      <Footer data={data.footer} />
+      {data?.footer && <Footer data={data.footer} />}
     </main>
   );
 }
