@@ -118,7 +118,7 @@ function KingdomSoundForm({ data }) {
     e.preventDefault();
     
     if (validateForm()) {
-      handleSubmit(e, formData, "formSubmissions", setLoading, setSuccess, "kingdomsound");
+      handleSubmit(e, formData, "kingdomSoundSubmissions", setLoading, setSuccess, "kingdomsound");
       
       // Reset form after successful submission
       setFormData({

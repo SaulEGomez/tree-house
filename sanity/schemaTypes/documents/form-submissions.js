@@ -84,7 +84,7 @@ export default {
     prepare(selection) {
       const { title, subtitle } = selection;
       return {
-        title: title || "Title of submisiosns",
+        title: title || "Title of submissions",
         subtitle: `Submitted on: ${new Date(subtitle).toLocaleString()}`,
       };
     },
