@@ -1,138 +1,115 @@
 "use client";
-import Electricguitar from "@/assets/Guitaricon.png";
+
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Electricguitar from "@/assets/Guitaricon.png";
 
 const Instruments = [
-  {
-    title: "Electric Guitar",
-    img: Electricguitar,
-  },
-  {
-    title: "Acoustic Guitar",
-    img: Electricguitar,
-  },
-  {
-    title: "Piano",
-    img: Electricguitar, 
-  },
-  {
-    title: "Ukulele",
-    img: Electricguitar, 
-  },
-  {
-    title: "Voice",
-    img: Electricguitar, 
-  },
-  {
-    title: "Bass Guitar",
-    img: Electricguitar, 
-  },
-  {
-    title: "Other",
-    img: Electricguitar, 
-  },
+  { title: "Electric Guitar", img: Electricguitar },
+  { title: "Acoustic Guitar", img: Electricguitar },
+  { title: "Piano", img: Electricguitar },
+  { title: "Ukulele", img: Electricguitar },
+  { title: "Voice", img: Electricguitar },
+  { title: "Bass Guitar", img: Electricguitar },
+  { title: "Other", img: Electricguitar },
 ];
 
 export default function FormStep2({ updateFormData, formData }) {
   const [otherInstrument, setOtherInstrument] = useState("");
 
-  // Initialize otherInstrument from formData if it exists
+  // Initialize "Other" input if a custom value is present
   useEffect(() => {
-    const other = Array.isArray(formData.instruments) 
-      ? formData.instruments.find(inst => !Instruments.some(i => i.title === inst))
-      : "";
-    if (other) {
-      setOtherInstrument(other);
-    }
+    const custom =
+      Array.isArray(formData.instruments) &&
+      formData.instruments.find(
+        (inst) => !Instruments.some((i) => i.title === inst)
+      );
+    if (custom) setOtherInstrument(custom);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInstrumentChange = (e) => {
     const { value, checked } = e.target;
 
-    let updatedInstruments = Array.isArray(formData.instruments)
+    let updated = Array.isArray(formData.instruments)
       ? [...formData.instruments]
       : [];
 
     if (value === "Other") {
       if (checked) {
-        // Add "Other" to the list and include the custom instrument if it exists
-        if (otherInstrument.trim()) {
-          updatedInstruments.push(otherInstrument.trim());
-        } else {
-          updatedInstruments.push("Other");
-        }
+        updated.push(otherInstrument.trim() || "Other");
       } else {
-        // Remove the custom instrument or "Other" from the list
-        updatedInstruments = updatedInstruments.filter(
-          (instrument) => instrument !== otherInstrument.trim() && instrument !== "Other"
+        updated = updated.filter(
+          (x) => x !== "Other" && x !== otherInstrument.trim()
         );
       }
     } else {
-      if (checked) {
-        updatedInstruments.push(value);
-      } else {
-        updatedInstruments = updatedInstruments.filter(
-          (instrument) => instrument !== value
-        );
-      }
+      if (checked) updated.push(value);
+      else updated = updated.filter((x) => x !== value);
     }
 
-    updateFormData({ instruments: updatedInstruments });
+    // de-dupe
+    updateFormData({ instruments: [...new Set(updated)] });
   };
 
   const handleOtherInputChange = (e) => {
-    const value = e.target.value;
-    setOtherInstrument(value);
-    
-    // Update the formData with the custom instrument
-    let updatedInstruments = Array.isArray(formData.instruments)
+    const val = e.target.value;
+    setOtherInstrument(val);
+
+    let updated = Array.isArray(formData.instruments)
       ? [...formData.instruments]
       : [];
-    
-    // Remove the old "Other" or custom instrument
-    updatedInstruments = updatedInstruments.filter(
-      (instrument) => instrument !== otherInstrument && instrument !== "Other"
+
+    // remove previous custom/Other
+    updated = updated.filter((x) => x !== otherInstrument && x !== "Other");
+
+    // keep checkbox selection if user had chosen "Other"
+    const hadOtherChecked = formData.instruments?.some(
+      (x) => x === otherInstrument || x === "Other"
     );
-    
-    // Add the new custom instrument if it's not empty, otherwise add "Other"
-    if (value.trim()) {
-      updatedInstruments.push(value.trim());
-    } else if (updatedInstruments.includes("Other") || otherInstrument) {
-      updatedInstruments.push("Other");
+
+    if (hadOtherChecked) {
+      updated.push(val.trim() ? val.trim() : "Other");
     }
-    
-    updateFormData({ instruments: updatedInstruments });
+
+    updateFormData({ instruments: [...new Set(updated)] });
   };
 
   return (
     <div className="flex flex-col w-[100%]">
-      <div className="flex flex-col  h-[370px] w-full">
+      <div className="flex flex-col h-[370px] w-full">
         <h3 className="mb-4 text-lg md:text-2xl font-medium text-white w-full mt-4">
           Choose your instruments:
         </h3>
+
         <ul className="grid w-full gap-2 gap-x-3 md:gap-4 grid-cols-3 sm:grid-cols-4 md:grid-cols-4">
-          {Instruments.map((inst, i) => {
-            const isChecked = Array.isArray(formData.instruments) &&
+          {Instruments.map((inst) => {
+            const key = inst.title;
+            const isCustomSelected =
+              Array.isArray(formData.instruments) &&
+              formData.instruments.some(
+                (instr) => !Instruments.some((i) => i.title === instr)
+              );
+            const isChecked =
+              Array.isArray(formData.instruments) &&
               (formData.instruments.includes(inst.title) ||
-               (inst.title === "Other" &&
-                formData.instruments.some(instr => !Instruments.some(i => i.title === instr))));
+                (inst.title === "Other" && isCustomSelected));
 
             return (
               <li
-                key={i}
+                key={key}
                 className="flex flex-col gap-1 font-medium text-[12px] md:text-[14px]"
               >
                 <input
                   type="checkbox"
-                  id={inst.title}
-                  value={inst.title}
-                  className="hidden peer "
+                  id={key}
+                  value={key}
+                  className="hidden peer"
                   onChange={handleInstrumentChange}
                   checked={isChecked}
                 />
                 <label
-                  htmlFor={inst.title}
+                  htmlFor={key}
                   className="inline-flex items-center justify-between max-w-[80px] sm:max-w-[90px] md:max-w-[100px] h-[60px] md:h-[80px] text-white border-2 border-white border-opacity-0 rounded-lg cursor-pointer peer-checked:border-white peer-checked:border-opacity-1 p-2 md:p-3 shadow-sm shadow-[#aa6646] hover:scale-[1.02] transition duration-300"
                 >
                   <div className="block">

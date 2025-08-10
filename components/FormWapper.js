@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from "react";
+'use client'
+import { useState } from "react";
 import Step1 from "@/components/FormSteps/Step1";
 import Step2 from "@/components/FormSteps/Step2";
 import Step3 from "@/components/FormSteps/Step3";
 import Step4 from "@/components/FormSteps/Step4";
 import Step5 from "@/components/FormSteps/Step5";
 import handleSubmit from "@/lib/https";
-import { useMediaQuery } from "react-responsive";
 
 function FormWrapper() {
   const [firstnameError, setFirstNameError] = useState(false);
   const [lastnameError, setLastNameError] = useState(false);
   const [emailError, setemailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
-    email:"",
-    phone:"",
+    email: "",
+    phone: "",
     instruments: [],
     pastExperience: "",
     availability: [],
@@ -40,18 +43,14 @@ function FormWrapper() {
     { title: "Availability" },
   ];
 
-// const  handleSubmit=()=>{
-//   alert(JSON.stringify(formData))
-// }  
-
   const checkEmptyField = (e) => {
     if (formData.firstname && formData.lastname) {
       handleSubmit(e, formData, "formSubmissions", setLoading, setSuccess, "general");
       setFormData({
         firstname: "",
         lastname: "",
-        email:"",
-        phone:"",
+        email: "",
+        phone: "",
         instruments: [],
         pastExperience: "",
         availability: [],
@@ -70,7 +69,7 @@ function FormWrapper() {
       if (activeStep !== steps.length - 1) {
         checkInputField();
       } else {
-        checkEmptyField();
+        checkEmptyField(e);
       }
     }
   };
@@ -101,117 +100,93 @@ function FormWrapper() {
     }
   };
 
-  const [phoneError, setPhoneError] = useState(false);
-
   const checkInputField = () => {
     let isValid = true;
-    if (formData.firstname.length === 0) {
+
+    if (!formData.firstname.trim()) {
       setFirstNameError(true);
       isValid = false;
-    } else {
-      setFirstNameError(false);
-    }
+    } else setFirstNameError(false);
 
-    if (formData.lastname.length === 0) {
+    if (!formData.lastname.trim()) {
       setLastNameError(true);
       isValid = false;
-    } else {
-      setLastNameError(false);
-    }
-    if (formData.email.length === 0) {
+    } else setLastNameError(false);
+
+    if (!formData.email.trim()) {
       setemailError(true);
       isValid = false;
-    } else {
-      setemailError(false);
-    }
+    } else setemailError(false);
 
     const phoneRegex = /^[0-9]{10}$/;
     if (!formData.phone || !phoneRegex.test(formData.phone)) {
       setPhoneError(true);
       isValid = false;
-    } else {
-      setPhoneError(false);
-    }
-    if (isValid) {
-      setActiveStep(activeStep + 1);
-    }
+    } else setPhoneError(false);
+
+    if (isValid) setActiveStep((s) => s + 1);
   };
 
   return (
-    <div
-      className="w-full mt-[50px] lg:mt-[0px]"
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-    >
+    <div className="w-full mt-[50px] lg:mt-[0px]" onKeyDown={handleKeyDown} tabIndex={0}>
       {success ? (
-        <div className="w-full h-[460px] text-[28px] text-[white] flex justify-center items-center">
+        <div className="w-full h-[460px] text-[28px] text-white flex justify-center items-center">
           <h1>{success}</h1>
         </div>
       ) : (
         <div className="w-full mx-auto">
-          {/* Custom Stepper with Numbers */}
-          <ol className="flex max-w-[280px] sm:max-w-[450px] w-full items-center justify-center mx-auto lg:ml-12">
-            {steps.map((step, index) => (
-              <div className="flex flex-col items-center w-full">
-                <li
-                  key={index}
-                  className={`flex items-center w-full ${
-                    index < steps.length - 1
-                      ? "after:content-[''] after:w-full sm:after:w-[8vw] lg:after:w-[6vw] after:h-1 after:border-b after:border-4 cursor-pointer"
-                      : ""
-                  } ${
-                    index < activeStep
-                      ? "text-blue-600 after:border-green-500  transition-all duration-500 cursor-pointer"
-                      : "after:border-gray-100 dark:after:border-gray-700"
-                  }`}
-                >
-                  <span
-                    className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 lg:h-10 lg:w-10 rounded-full cursor-pointer ${
-                      index <= activeStep
-                        ? "bg-green-500 text-gray-800 dark:bg-blue-800 dark:text-blue-300 transition-all duration-500"
-                        : "bg-white text-gray-500 dark:bg-gray-700 dark:text-gray-100"
-                    }`}
-                  >
-                    {index + 1}
-                  </span>
-                </li>
-                <p
-                  className={`${
-                    index <= activeStep
-                      ? "text-green-400 transition-all duration-500"
-                      : "text-white"
-                  } hidden mt-2 sm:block text-[12px] sm:text-[13px] lg:text-[14px] xl:text-[15px] font-medium  ${
-                    index === 0 && "sm:-ml-[55px] md:-ml-[70px] "
-                  } ${index === 1 && "sm:-ml-[53px] md:-ml-[60px]  lg:-ml-[68px]"} ${index === 2 ? "sm:-ml-[53px] md:-ml-[60px] lg:-ml-[68px]" : ""} ${
-                    index === 3 && "-ml-[52px] md:-ml-[60px] lg:-ml-[68px] "
-                  } ${index === 4 && "sm:-ml-1  md:-ml-[5px] "}`}
-                >
-                  {step.title}
-                </p>
-              </div>
-            ))}
-          </ol>
+          {/* Stepper — same width/placement as before */}
+          <div className="relative w-full mx-auto max-w-[280px] sm:max-w-[450px] px-2">
+            {/* faint connector line behind the dots */}
+
+            <ol className="flex items-start justify-between">
+              {steps.map((step, index) => {
+                const active = index <= activeStep
+                return (
+                  <li key={step.title || index} className="flex flex-col items-center text-center">
+                    <span
+                      className={[
+                        'flex h-10 w-10 items-center justify-center rounded-full',
+                        active ? 'bg-green-500 text-gray-800' : 'bg-white text-gray-500',
+                      ].join(' ')}
+                    >
+                      {index + 1}
+                    </span>
+
+                    <span
+                      className={[
+                        'mt-2 hidden sm:block font-medium',
+                        'text-[12px] sm:text-[13px] lg:text-[14px] xl:text-[15px]',
+                        active ? 'text-green-400' : 'text-white',
+                      ].join(' ')}
+                    >
+                      {step.title}
+                    </span>
+
+                    {active && <span className="mt-1 h-1 w-12 bg-white" />}
+                  </li>
+                )
+              })}
+            </ol>
+          </div>
 
           {/* Form Steps */}
           <div style={{ padding: "20px" }} className="w-full">
             {getSectionComponent()}
 
-            {/* Form Navigation Buttons */}
+            {/* Nav buttons */}
             <div className="flex justify-between items-center mt-4">
-              {/* Back Button */}
               {activeStep !== 0 && (
                 <button
                   className="text-[18px] font-semibold px-3 py-2 bg-white rounded-[2px] transition duration-300 text-gray-800 hover:scale-[0.9] hover:bg-[#fcddb0]"
-                  onClick={() => setActiveStep(activeStep - 1)}
+                  onClick={() => setActiveStep((s) => s - 1)}
                 >
                   Back
                 </button>
               )}
-              
-              {/* Spacer to push buttons to edges */}
-              <div className="flex-grow"></div>
-              
-              {/* Next or Send Button */}
+
+              <div className="flex-grow" />
+
               {activeStep !== steps.length - 1 ? (
                 <button
                   className="text-[18px] font-semibold px-3 py-2 bg-white rounded-[2px] transition duration-300 text-gray-800 hover:scale-[0.9] hover:bg-[#fce5c3]"
@@ -223,8 +198,9 @@ function FormWrapper() {
                 <button
                   onClick={checkEmptyField}
                   className="bg-green-500 text-white px-6 py-2 transition duration-300 hover:scale-[1.03] hover:bg-green-600 rounded-[2px] shadow-sm"
+                  disabled={loading}
                 >
-                  Submit
+                  {loading ? "Submitting..." : "Submit"}
                 </button>
               )}
             </div>

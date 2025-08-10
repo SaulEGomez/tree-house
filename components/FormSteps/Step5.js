@@ -1,4 +1,6 @@
-export default function Step5({ prevStep, updateFormData, formData }) {
+"use client";
+
+export default function Step5({ updateFormData, formData }) {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full h-[370px]">

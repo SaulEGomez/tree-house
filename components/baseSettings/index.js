@@ -1,28 +1,14 @@
-'use client';
-import React, { useEffect, useState } from 'react';
+'use client'
+import { useEffect } from 'react'
 
-const BaseSettings = ({ baseSettings }) => {
-  const [loading, setLoading] = useState(true);
-
+export default function BaseSettings({ baseSettings }) {
   useEffect(() => {
-    if (baseSettings) {
-      Object.keys(baseSettings).forEach((key) => {
-        const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-        document.documentElement.style.setProperty(`--${kebabKey}`, baseSettings[key]);
-      });
-      setLoading(false);
+    if (!baseSettings) return
+    for (const [key, val] of Object.entries(baseSettings)) {
+      if (val == null) continue
+      const kebab = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+      document.documentElement.style.setProperty(`--${kebab}`, String(val))
     }
-  }, [baseSettings]);
-
-  if (loading) {
-    return (
-      <div className='loader-container'>
-        <div className="loader" />
-      </div>
-    );
-  }
-
-  return null;
-};
-
-export default BaseSettings;
+  }, [baseSettings])
+  return null
+}

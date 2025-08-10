@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa6";
 import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { useRef } from "react";
-import { urlFor } from "../sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 function About({ data }) {
   const ref = useRef(null);

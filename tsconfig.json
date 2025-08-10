@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "sanity/utils.js", "app/layout.jsx", "app/page.jsx", "lib/sanity/fetch.js", "lib/sanity/client.js", "lib/sanity/queries.js", "lib/sanity/urlFor.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "sanity/utils.js", "app/layout.jsx", "app/treehouse/page.jsx", "lib/sanity/fetch.js", "lib/sanity/client.js", "lib/sanity/queries.js", "lib/sanity/urlFor.js"],
   "exclude": ["node_modules"]
 }

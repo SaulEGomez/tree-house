@@ -14,7 +14,7 @@ import footer from './documents/footer'
 import footerLink from './documents/footerLink'
 import menuItem from './documents/menuItem'
 import formSubmissions from './documents/form-submissions'
-import kingdomSoundSubmissions from './documents/kingdomSoundSubmissions'
+import kingdomSound from './documents/kingdomSound'
 
 
 export const schema = {
@@ -35,7 +35,7 @@ export const schema = {
     menuItem,
     footerLink,
     formSubmissions,
-    kingdomSoundSubmissions,
+    kingdomSound,
   ],
 }
 

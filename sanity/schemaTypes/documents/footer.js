@@ -1,4 +1,6 @@
-import { defineType, defineField } from 'sanity';
+// sanity/schemaTypes/documents/footer.js
+import { defineType, defineField } from 'sanity'
+import { LinkIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'footer',
@@ -9,52 +11,61 @@ export default defineType({
       name: 'menus',
       title: 'Menus',
       type: 'array',
-      of: [{ type: 'menuItem' }], // Reference the new menu item type
+      of: [{ type: 'menuItem', icon: LinkIcon }],
     }),
+
     defineField({
       name: 'newsletterText',
       title: 'Newsletter Text',
       type: 'string',
-      initialValue: 'Lorem ipsum dolor sit amet, consectetur.',
-      validation: (Rule) => Rule.required(),
+      initialValue: 'Get updates in your inbox.',
+      validation: (R) => R.required(),
     }),
     defineField({
       name: 'emailPlaceholder',
       title: 'Email Placeholder',
       type: 'string',
-      initialValue: 'Email',
-      validation: (Rule) => Rule.required(),
+      initialValue: 'Your email',
+      validation: (R) => R.required(),
     }),
     defineField({
       name: 'sendButtonText',
       title: 'Send Button Text',
       type: 'string',
-      initialValue: 'Send',
-      validation: (Rule) => Rule.required(),
+      initialValue: 'Subscribe',
+      validation: (R) => R.required(),
     }),
     defineField({
       name: 'footerDescription',
       title: 'Footer Description',
       type: 'text',
-      initialValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
-      validation: (Rule) => Rule.required(),
+      rows: 3,
+      initialValue:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      validation: (R) => R.required(),
     }),
+
     defineField({
       name: 'socialMediaGroup',
-      title: 'Social Media Group',
+      title: 'Social Links',
       type: 'object',
-      fields: [
-        { name: 'facebook', title: 'Facebook URL', type: 'string', initialValue: '#' },
-        { name: 'youtube', title: 'YouTube URL', type: 'string', initialValue: '#' },
-        { name: 'twitter', title: 'Twitter URL', type: 'string', initialValue: '#' },
-        { name: 'instagram', title: 'Instagram URL', type: 'string', initialValue: '#' },
-      ],
       options: { collapsible: true, collapsed: true },
+      fields: [
+        { name: 'facebook', title: 'Facebook URL', type: 'url' },
+        { name: 'youtube',  title: 'YouTube URL',  type: 'url' },
+        { name: 'twitter',  title: 'Twitter URL',  type: 'url' },
+        { name: 'instagram',title: 'Instagram URL',type: 'url' },
+      ],
     }),
+
     defineField({
       name: 'logo',
       title: 'Footer Logo',
       type: 'image',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', title: 'Alt text', type: 'string' },
+      ],
     }),
   ],
-});
+})

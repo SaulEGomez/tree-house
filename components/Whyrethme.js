@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import CountUp from 'react-countup';
 import { useMediaQuery } from "react-responsive";
-import { urlFor } from "../sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 function Whyrethme({ data }) {
     
