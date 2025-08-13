@@ -1,6 +1,5 @@
-// app/layout.jsx  (no 'use client')
+// app/layout.jsx
 import './globals.css'
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

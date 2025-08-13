@@ -8,6 +8,8 @@ import { structure } from './sanity/structure'
 import { projectId, dataset } from './sanity/env'
 
 export default defineConfig({
+  name: 'default',
+  title: 'Treehouse Studio',
   basePath: '/studio',
   projectId,                // pulled from env via sanity/env.js
   dataset,                  // pulled from env via sanity/env.js
