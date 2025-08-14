@@ -1,5 +1,4 @@
 "use client";
-import { FaCheck } from "react-icons/fa6";
 import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { useRef } from "react";
@@ -51,22 +50,15 @@ function About({ data }) {
               {description}
             </motion.p>
             {list.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 180 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={
-                  isMobile
-                    ? { duration: 0.75, delay: 0.3 + index * 0.1 }
-                    : { duration: 1, delay: 0.3 + index * 0.1 }
-                }
-                className="flex items-center gap-[15px] my-[16px]"
-              >
-                <div className="w-[18px] h-[18px] rounded-full bg-green-600 text-white flex items-center justify-center">
-                  <FaCheck className="text-[12px] font-semibold" />
-                </div>
-                <p className="text-black text-[18px] font-medium">{item}</p>
-              </motion.div>
+              <motion.p
+              key={index}
+              initial={{ opacity: 0, y: 180 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={isMobile ? { duration: 0.75, delay: 0.3 + index * 0.1 } : { duration: 1, delay: 0.3 + index * 0.1 }}
+              className="my-[16px] text-black text-[18px] font-medium"
+            >
+              {item}
+            </motion.p>
             ))}
           </div>
           <motion.div
