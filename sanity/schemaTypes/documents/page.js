@@ -42,6 +42,7 @@ export default defineType({
         { type: 'program' },
         { type: 'testimonial' },
         { type: 'contact' },
+        { type: 'aboutReels'},
       ],
     }),
   ],

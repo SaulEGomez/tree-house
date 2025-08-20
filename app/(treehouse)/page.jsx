@@ -12,6 +12,7 @@ import OurPrograms from '@/components/OurPrograms'
 import Testimonials from '@/components/Testimonials'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
+import AboutReels from '@/components/AboutReels'
 
 export const revalidate = 60
 
@@ -19,9 +20,20 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
   ...,
   "header": *[_type == "header"][0],
   "footer": *[_type == "footer"][0],
-  modules[]
+  modules[]{
+    ...,
+    _type == "aboutReels" => {
+      ...,
+      videos[]{
+        label,
+        src,                         // optional external override
+        poster,                      // keep full image object if you use urlFor
+        "fileUrl": video.asset->url, // <-- actual uploaded file URL
+        "posterUrl": poster.asset->url
+      }
+    }
+  }
 }`
-
 // Map module _type -> anchor id (must match your ScrollLink "to" values)
 const idMap = {
   hero: 'home',
@@ -44,6 +56,7 @@ function renderModule(m) {
     case 'program':     return <OurPrograms data={m} />
     case 'testimonial': return <Testimonials data={m} />
     case 'contact':     return <Contact data={m} />
+    case 'aboutReels': return <AboutReels key={m._key} data={m} />
     default:            return null
   }
 }

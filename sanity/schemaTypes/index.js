@@ -15,8 +15,8 @@ import footerLink from './documents/footerLink'
 import menuItem from './documents/menuItem'
 import formSubmissions from './documents/form-submissions'
 import kingdomSound from './documents/kingdomSound'
-
-
+import aboutReels from './components/aboutReels'
+import videoClip from './components/videoClip'
 export const schema = {
   types: [
     siteSettings,
@@ -36,6 +36,8 @@ export const schema = {
     footerLink,
     formSubmissions,
     kingdomSound,
+    videoClip,
+    aboutReels,
   ],
 }
 
