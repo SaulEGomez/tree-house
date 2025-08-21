@@ -118,7 +118,7 @@ const clips = (videos || [])
 
                     <button
                       onClick={toggleMute}
-                      className="inline-flex items-center gap-2 rounded-md bg-white/90 px-3 py-1 text-sm font-medium hover:bg-whie"
+                      className="inline-flex items-center gap-2 rounded-md bg-white/90 px-3 py-1 text-sm font-medium hover:bg-white"
                       aria-label={muted ? "Unmute video" : "Mute video"}
                       title={muted ? "Unmute" : "Mute"}
                     >
