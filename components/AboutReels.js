@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
-import { FiChevronLeft, FiChevronRight, FiPlay, FiPause } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight, FiPlay, FiPause, FiVolume2, FiVolumeX } from "react-icons/fi";
 import { urlFor } from "@/sanity/lib/image";
 
 export default function AboutReels({ data }) {
@@ -35,6 +35,7 @@ const clips = (videos || [])
   const hasClips = clips.length > 0;
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(false);
   const videoRef = useRef(null);
 
   const textRef = useRef(null);
@@ -55,10 +56,24 @@ const clips = (videos || [])
   const onTogglePlay = () => {
     const el = videoRef.current;
     if (!el) return;
-    if (el.paused) el.play().then(() => setPlaying(true)).catch(() => {});
-    else { el.pause(); setPlaying(false); }
+    if (el.paused) {
+      el.muted = false;
+      el.volume = 1.0;
+      setMuted(false);
+      el.play().then(() => setPlaying(true)).catch(() => {});
+    } else {
+      el.pause();
+      setPlaying(false);
+    }
   };
 
+  const toggleMute = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = !el.muted;
+    setMuted(el.muted);
+  };
+  
   const prev = () => setIndex((i) => (i - 1 + clips.length) % clips.length);
   const next = () => setIndex((i) => (i + 1) % clips.length);
   const current = hasClips ? clips[index] : null;
@@ -77,7 +92,7 @@ const clips = (videos || [])
                   className="absolute inset-0 h-full w-full object-cover"
                   src={current.src}
                   poster={current.poster || undefined}
-                  muted
+                  muted={muted}
                   playsInline
                   preload="metadata"
                   controls={false}
@@ -92,18 +107,39 @@ const clips = (videos || [])
             {hasClips && (
               <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-3 bg-gradient-to-t from-black/50 to-transparent">
                 <div className="flex items-center justify-between">
-                  <button
-                    onClick={onTogglePlay}
-                    className="inline-flex items-center gap-2 rounded-md bg-white/90 px-3 py-1 text-sm font-medium hover:bg-white"
-                  >
-                    {playing ? <FiPause /> : <FiPlay />}
-                    {playing ? "Pause" : "Play"}
-                  </button>
                   <div className="flex items-center gap-2">
-                    <button onClick={prev} className="rounded-md bg-white/90 p-2 hover:bg-white" aria-label="Previous clip">
+                    <button
+                      onClick={onTogglePlay}
+                      className="inline-flex items-center gap-2 rounded-md bg-white/90 px-3 py-1 text-sm font-medium hover:bg-white"
+                    >
+                      {playing ? <FiPause /> : <FiPlay />}
+                      {playing ? "Pause" : "Play"}
+                    </button>
+
+                    <button
+                      onClick={toggleMute}
+                      className="inline-flex items-center gap-2 rounded-md bg-white/90 px-3 py-1 text-sm font-medium hover:bg-whie"
+                      aria-label={muted ? "Unmute video" : "Mute video"}
+                      title={muted ? "Unmute" : "Mute"}
+                    >
+                      {muted ? <FiVolumeX /> : <FiVolume2 />}
+                      {muted ? "Unmute" : "Mute"}
+                    </button>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={prev} 
+                      className="rounded-md bg-white/90 p-2 hover:bg-white" 
+                      aria-label="Previous clip"
+                    >
                       <FiChevronLeft />
                     </button>
-                    <button onClick={next} className="rounded-md bg-white/90 p-2 hover:bg-white" aria-label="Next clip">
+                    <button 
+                      onClick={next} 
+                      className="rounded-md bg-white/90 p-2 hover:bg-white" 
+                      aria-label="Next clip"
+                    >
                       <FiChevronRight />
                     </button>
                   </div>
