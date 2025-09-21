@@ -19,7 +19,6 @@ export default {
         type: 'array',
         of: [
           {
-            name: 'photo',
             type: 'image',
             options: { hotspot: true },
             fields: [{ name: 'alt', type: 'string', title: 'Alt text' }],

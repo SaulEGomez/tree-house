@@ -38,7 +38,7 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
       }
     },
 
-    _type == "aboutPhotoReel" => {
+    _type == "aboutPhotosReel" => {
       ...,
       photos[]{
         ...,
