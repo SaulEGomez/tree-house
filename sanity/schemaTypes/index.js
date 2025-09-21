@@ -23,7 +23,7 @@ export const schema = {
     page,
     hero,
     rating,
-    aboutPhotosReel,
+    AboutPhotosReel,
     ourClass,
     why,
     program,
