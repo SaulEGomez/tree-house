@@ -4,7 +4,7 @@ import hero from './components/hero';
 import rating from './components/rating';
 import ourClass from './components/ourClass';
 import why from './components/why';
-import about from './components/about';
+import aboutPhotosReel from './components/aboutPhotosReel';
 import program from './components/program';
 import testimonial from './components/testimonial';
 import contact from './components/contact';
@@ -23,7 +23,7 @@ export const schema = {
     page,
     hero,
     rating,
-    about,
+    aboutPhotosReel,
     ourClass,
     why,
     program,

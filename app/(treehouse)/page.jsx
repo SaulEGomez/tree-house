@@ -5,7 +5,7 @@ import { serverClient } from '@/sanity/lib/serverClient'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import QuoteSection from '@/components/QuoteSection'
-import About from '@/components/About'
+import AboutPhotosReel from '@/components/AboutPhotosReel'
 import Instruments from '@/components/Instruments'
 import Whyrethme from '@/components/Whyrethme'
 import OurPrograms from '@/components/OurPrograms'
@@ -22,6 +22,11 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
   "footer": *[_type == "footer"][0],
   modules[]{
     ...,
+
+    _type == "aboutPhotosReel" => {
+      "ratio": image.asset->metadata.dimensions.aspectRatio
+    },
+
     _type == "aboutReels" => {
       ...,
       videos[]{
@@ -34,11 +39,11 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
     }
   }
 }`
-// Map module _type -> anchor id (must match your ScrollLink "to" values)
+
 const idMap = {
   hero: 'home',
   rating: 'rating',
-  about: 'about',
+  aboutPhotosReel: 'about',
   ourClass: 'ourclass',
   why: 'why',
   program: 'programs',
@@ -50,7 +55,7 @@ function renderModule(m) {
   switch (m._type) {
     case 'hero':        return <Hero data={m} />
     case 'rating':      return <QuoteSection data={m} />
-    case 'about':       return <About data={m} />
+    case 'aboutPhotosReel':       return <AboutPhotosReel key={m._key} data={m} />
     case 'ourClass':    return <Instruments data={m} />
     case 'why':         return <Whyrethme data={m} />
     case 'program':     return <OurPrograms data={m} />

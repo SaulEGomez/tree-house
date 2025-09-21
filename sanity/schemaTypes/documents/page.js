@@ -36,7 +36,7 @@ export default defineType({
       of: [
         { type: 'hero' },
         { type: 'rating' },
-        { type: 'about' },
+        { type: 'aboutPhotosReel' },
         { type: 'ourClass' },
         { type: 'why' },
         { type: 'program' },
