@@ -36,6 +36,15 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
         "fileUrl": video.asset->url, // <-- actual uploaded file URL
         "posterUrl": poster.asset->url
       }
+    },
+
+    _type == "aboutPhotoReel" => {
+      ...,
+      photos[]{
+        ...,
+        "url": asset->url,
+        "ratio": asset->metadata.dimensions.aspectRatio
+      }
     }
   }
 }`
