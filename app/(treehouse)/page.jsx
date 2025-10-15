@@ -13,6 +13,7 @@ import Testimonials from '@/components/Testimonials'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
 import AboutReels from '@/components/AboutReels'
+import ClassOfferingsCarousel from '@/components/ClassOfferingsCarousel'
 
 export const revalidate = 60
 
@@ -29,18 +30,36 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
 
     _type == "aboutReels" => {
       ...,
-      videos[]{
-        label,
-        src,                         // optional external override
-        poster,                      // keep full image object if you use urlFor
-        "fileUrl": video.asset->url, // <-- actual uploaded file URL
-        "posterUrl": poster.asset->url
+      photos[]{
+        ...,
+        "url": asset->url,
+        "ratio": asset->metadata.dimensions.aspectRatio
       }
     },
 
     _type == "aboutPhotosReel" => {
       ...,
-      photos[]{
+      videos[]{
+        label,
+        src,                         
+        poster,                      
+        "fileUrl": video.asset->url, 
+        "posterUrl": poster.asset->url
+      }
+    },
+    _type == "classOfferings" => {
+      title,
+      subtitle,
+      items[]{
+        name,
+        description,
+        image,
+        "imageUrl": image.asset->url
+      }
+    },
+    _type == "testimonial" => {
+      ...,
+      gallery[]{
         ...,
         "url": asset->url,
         "ratio": asset->metadata.dimensions.aspectRatio
@@ -68,9 +87,10 @@ function renderModule(m) {
     case 'ourClass':    return <Instruments data={m} />
     case 'why':         return <Whyrethme data={m} />
     case 'program':     return <OurPrograms data={m} />
-    case 'testimonial': return <Testimonials data={m} />
+    case 'testimonial': return <Testimonials key={m._key} data={m} />
     case 'contact':     return <Contact data={m} />
     case 'aboutReels': return <AboutReels key={m._key} data={m} />
+    case 'classOfferings': return <ClassOfferingsCarousel data={m} />
     default:            return null
   }
 }

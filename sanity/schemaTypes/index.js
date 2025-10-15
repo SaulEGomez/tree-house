@@ -9,14 +9,16 @@ import program from './components/program';
 import testimonial from './components/testimonial';
 import contact from './components/contact';
 import newsletter from './documents/newsletter';
-import header from './documents/header'
-import footer from './documents/footer'
-import footerLink from './documents/footerLink'
-import menuItem from './documents/menuItem'
-import formSubmissions from './documents/form-submissions'
-import kingdomSound from './documents/kingdomSound'
-import aboutReels from './components/aboutReels'
-import videoClip from './components/videoClip'
+import header from './documents/header';
+import footer from './documents/footer';
+import footerLink from './documents/footerLink';
+import menuItem from './documents/menuItem';
+import formSubmissions from './documents/form-submissions';
+import kingdomSound from './documents/kingdomSound';
+import aboutReels from './components/aboutReels';
+import videoClip from './components/videoClip';
+import classOfferings from './components/classOfferings';
+
 export const schema = {
   types: [
     siteSettings,
@@ -38,6 +40,7 @@ export const schema = {
     kingdomSound,
     videoClip,
     aboutReels,
+    classOfferings,
   ],
-}
+};
 

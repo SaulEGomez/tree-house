@@ -1,36 +1,34 @@
 export default {
-    name: 'aboutPhotosReel',           
-    title: 'About — Photos Reel',
-    type: 'object',
-    fields: [
-      { name: 'subtitle', type: 'string', title: 'Subtitle' },
-      { name: 'title', type: 'string', title: 'Title' },
-      { name: 'description', type: 'text', title: 'Description' },
-      {
-        name: 'list',
-        title: 'Bulleted Points',
-        type: 'array',
-        of: [{ type: 'string' }],
-        options: { sortable: true },
-      },
-      {
-        name: 'photos',
-        title: 'Photos',
-        type: 'array',
-        of: [
-          {
-            type: 'image',
-            options: { hotspot: true },
-            fields: [{ name: 'alt', type: 'string', title: 'Alt text' }],
-          },
-        ],
-      },
-    ],
-    preview: {
-      select: { title: 'title', media: 'photos.0' },
-      prepare({ title, media }) {
-        return { title: title || 'About — Photos Reel', media }
-      },
+  name: 'aboutPhotosReel',
+  title: 'About (Video Reel)',
+  type: 'object',
+  fields: [
+    { name: 'subtitle', type: 'string', title: 'Subtitle' },
+    { name: 'title', type: 'string', title: 'Title' },
+    { name: 'description', type: 'text', title: 'Description' },
+    { name: 'list', type: 'array', title: 'Bullets', of: [{ type: 'string' }] },
+    {
+      name: 'videos',
+      title: 'Videos',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label (optional)' },
+            { name: 'src', type: 'url', title: 'External video URL (optional)' },
+            { name: 'video', type: 'file', title: 'Upload video', options: { accept: 'video/*' } },
+            {
+              name: 'poster',
+              type: 'image',
+              title: 'Poster',
+              options: { hotspot: true },
+              fields: [{ name: 'alt', type: 'string', title: 'Alt text' }],
+            },
+          ],
+        },
+      ],
     },
-  }
-  
+  ],
+  preview: { select: { title: 'title', media: 'videos.0.poster' } },
+}

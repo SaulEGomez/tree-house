@@ -1,25 +1,25 @@
-import {defineType, defineField} from 'sanity'
-
-export default defineType({
+export default {
   name: 'aboutReels',
-  title: 'About us (videos)',
+  title: 'Founder (Photo Reel)',
   type: 'object',
   fields: [
-    defineField({ name: 'subtitle', type: 'string', title: 'Subtitle' }),
-    defineField({ name: 'title', type: 'string', title: 'Title' }),
-    defineField({ name: 'description', type: 'text', title: 'Description' }),
-    defineField({
-      name: 'list',
-      title: 'Bulleted Points',
+    { name: 'subtitle', type: 'string', title: 'Subtitle' },
+    { name: 'title', type: 'string', title: 'Title' },
+    { name: 'description', type: 'text', title: 'Description' },
+    { name: 'list', type: 'array', title: 'Bullets', of: [{ type: 'string' }] },
+    {
+      name: 'photos',
+      title: 'Photos',
       type: 'array',
-      of: [{ type: 'string' }],
-    }),
-    defineField({
-      name: 'videos',
-      title: 'Clips',
-      type: 'array',
-      of: [{ type: 'videoClip' }],
-      validation: (Rule) => Rule.min(1).error('Add at least one clip'),
-    }),
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [{ name: 'alt', type: 'string', title: 'Alt text' }],
+        },
+      ],
+      options: { layout: 'grid' },
+    },
   ],
-})
+  preview: { select: { title: 'title', media: 'photos.0' } },
+}
