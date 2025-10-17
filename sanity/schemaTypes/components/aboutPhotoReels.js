@@ -1,5 +1,5 @@
 export default {
-  name: 'aboutPhotosReel',
+  name: 'aboutPhotoReels',
   title: 'Founder (Photo Reel)',
   type: 'object',
   fields: [

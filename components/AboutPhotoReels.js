@@ -1,4 +1,4 @@
-// components/AboutPhotosReel.js
+// components/AboutPhotoReels.js
 "use client";
 
 import { useState, useRef } from "react";
@@ -6,7 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { urlFor } from "@/sanity/lib/image";
 
-export default function AboutPhotosReel({ data }) {
+export default function AboutPhotoReels({ data }) {
   const {
     subtitle = "",
     title = "",

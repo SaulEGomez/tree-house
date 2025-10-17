@@ -46,7 +46,7 @@ export const schema = {
     formSubmissions,
     kingdomSound,
     videoClip,
-    aboutPhotosReel,
+    aboutPhotoReels,
     classOfferings,
   ],
 };
