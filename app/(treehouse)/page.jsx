@@ -12,7 +12,7 @@ import OurPrograms from '@/components/OurPrograms'
 import Testimonials from '@/components/Testimonials'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
-import AboutPhotosReel from '@/components/AboutPhotosReel'
+import AboutPhotoReels from '@/components/AboutPhotoReels'
 import ClassOfferingsCarousel from '@/components/ClassOfferingsCarousel'
 
 export const revalidate = 60
@@ -33,7 +33,7 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
         "posterUrl": poster.asset->url
       },
     },
-    _type == "aboutPhotosReel" => {
+    _type == "aboutPhotoReels" => {
       ...,
       photos[]{
         ...,
@@ -83,7 +83,7 @@ function renderModule(m) {
     case 'program':     return <OurPrograms data={m} />
     case 'testimonial': return <Testimonials key={m._key} data={m} />
     case 'contact':     return <Contact data={m} />
-    case 'aboutPhotosReel': return <AboutPhotosReel key={m._key} data={m} />
+    case 'aboutPhotoReels': return <AboutPhotoReels key={m._key} data={m} />
     case 'classOfferings': return <ClassOfferingsCarousel data={m} />
     default:            return null
   }

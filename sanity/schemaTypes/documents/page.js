@@ -42,7 +42,7 @@ export default defineType({
         { type: 'program' },
         { type: 'testimonial' },
         { type: 'contact' },
-        { type: 'aboutPhotosReel' },
+        { type: 'aboutPhotoReels' },
         { type: 'classOfferings' },
       ],
     }),

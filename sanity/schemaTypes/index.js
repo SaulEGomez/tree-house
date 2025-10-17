@@ -15,7 +15,7 @@ import footerLink from './documents/footerLink';
 import menuItem from './documents/menuItem';
 import formSubmissions from './documents/form-submissions';
 import kingdomSound from './documents/kingdomSound';
-import aboutPhotosReel from './components/aboutPhotosReel';
+import aboutPhotoReels from './components/aboutPhotoReels';
 import videoClip from './components/videoClip';
 import classOfferings from './components/classOfferings';
 import imageWithAlt from './objects/imagewithAlt';
