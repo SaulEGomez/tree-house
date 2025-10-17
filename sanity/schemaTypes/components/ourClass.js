@@ -1,7 +1,7 @@
 export default {
     name: 'ourClass',
     title: 'Our Class',
-    type: 'document',
+    type: 'object',
     fields: [
       {
         name: 'subtitle',
@@ -29,17 +29,7 @@ export default {
               {
                 name: 'image',
                 title: 'Image',
-                type: 'image',
-                options: {
-                  hotspot: true,
-                },
-                fields: [
-                  {
-                    name: 'alt',
-                    title: 'Alternative Text',
-                    type: 'string',
-                  },
-                ],
+                type: 'imageWithAlt',
               },
               {
                 name: 'title',
@@ -52,15 +42,10 @@ export default {
                 type: 'text',
               },
               {
-                name: 'buttonText',
-                title: 'Button Text',
-                type: 'string',
-              },
-              {
-                name: 'buttonUrl',
-                title: 'Button URL',
-                type: 'string', // Using 'string' instead of 'url' to avoid strict validation
-              },
+                name: 'callToAction',
+                title: 'Call to Action',
+                type: 'link',
+              }, 
             ],
             preview: {
               select: {
@@ -74,7 +59,7 @@ export default {
     ],
     preview: {
       select: {
-        title: 'heading',
+        title: 'welcomeText',
       },
       prepare({ title }) {
         return {

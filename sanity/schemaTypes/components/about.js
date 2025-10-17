@@ -1,8 +1,8 @@
 import {defineType, defineField} from 'sanity'
 
 export default defineType({
-  name: 'aboutPhotosReel',
-  title: 'About – Photos Reel',
+  name: 'aboutReel',
+  title: 'About',
   type: 'object',
   fields: [
     defineField({ name: 'subtitle', type: 'string' }),
@@ -34,3 +34,4 @@ export default defineType({
     prepare: ({ title, media }) => ({ title: title || 'About – Photos Reel', media }),
   },
 })
+

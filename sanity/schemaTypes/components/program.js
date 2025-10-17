@@ -1,7 +1,7 @@
 export default {
     name: 'program',
     title: 'Programs',
-    type: 'document',
+    type: 'object',
     fields: [
       {
         name: 'subtitle',
@@ -65,19 +65,7 @@ export default {
               {
                 name: 'learnMoreButton',
                 title: 'Learn More Button',
-                type: 'object',
-                fields: [
-                  {
-                    name: 'text',
-                    title: 'Button Text',
-                    type: 'string',
-                  },
-                  {
-                    name: 'url',
-                    title: 'Button URL',
-                    type: 'string',
-                  },
-                ],
+                type: 'link',
               },
             ],
             preview: {
@@ -107,7 +95,7 @@ export default {
     ],
     preview: {
       select: {
-        title: 'heading',
+        title: 'welcomeText',
       },
       prepare({ title }) {
         return {

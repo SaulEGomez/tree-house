@@ -9,7 +9,7 @@ export default {
       {
         name: 'logo',
         title: 'Logo',
-        type: 'image',
+        type: 'imageWithAlt',
       },
       {
         name: 'menuItems',
@@ -36,19 +36,7 @@ export default {
       {
         name: 'specialButton',
         title: 'Special Button',
-        type: 'object',
-        fields: [
-          {
-            name: 'label',
-            title: 'Label',
-            type: 'string',
-          },
-          {
-            name: 'link',
-            title: 'Link',
-            type: 'string',
-          },
-        ],
+        type: 'link',
       },
     ],
   };

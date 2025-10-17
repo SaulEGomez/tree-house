@@ -1,7 +1,7 @@
 export default {
     name: 'why',
     title: 'Why',
-    type: 'document',
+    type: 'object',
     fields: [
       {
         name: 'subtitle',
@@ -31,17 +31,7 @@ export default {
           {
             name: 'ceoImage',
             title: 'CEO Image',
-            type: 'image',
-            options: {
-              hotspot: true,
-            },
-            fields: [
-              {
-                name: 'alt',
-                title: 'Alternative Text',
-                type: 'string',
-              },
-            ],
+            type: 'imageWithAlt',
           },
           {
             name: 'ceoPosition',
@@ -90,7 +80,7 @@ export default {
     ],
     preview: {
       select: {
-        title: 'heading',
+        title: 'welcomeText',
       },
       prepare({ title }) {
         return {

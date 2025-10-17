@@ -1,6 +1,6 @@
 export default {
   name: 'aboutPhotosReel',
-  title: 'About (Video Reel)',
+  title: 'Founder (Photo Reel)',
   type: 'object',
   fields: [
     { name: 'subtitle', type: 'string', title: 'Subtitle' },
@@ -8,27 +8,16 @@ export default {
     { name: 'description', type: 'text', title: 'Description' },
     { name: 'list', type: 'array', title: 'Bullets', of: [{ type: 'string' }] },
     {
-      name: 'videos',
-      title: 'Videos',
+      name: 'photos',
+      title: 'Photos',
       type: 'array',
       of: [
         {
-          type: 'object',
-          fields: [
-            { name: 'label', type: 'string', title: 'Label (optional)' },
-            { name: 'src', type: 'url', title: 'External video URL (optional)' },
-            { name: 'video', type: 'file', title: 'Upload video', options: { accept: 'video/*' } },
-            {
-              name: 'poster',
-              type: 'image',
-              title: 'Poster',
-              options: { hotspot: true },
-              fields: [{ name: 'alt', type: 'string', title: 'Alt text' }],
-            },
-          ],
+          type: 'imageWithAlt',
         },
       ],
+      options: { layout: 'grid' },
     },
   ],
-  preview: { select: { title: 'title', media: 'videos.0.poster' } },
+  preview: { select: { title: 'title', media: 'photos.0' } },
 }

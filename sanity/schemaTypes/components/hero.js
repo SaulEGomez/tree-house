@@ -1,22 +1,12 @@
 export default {
   name: "hero",
   title: "Hero",
-  type: "document",
+  type: "object",
   fields: [
     {
       name: "topImage",
       title: "Top Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative Text',
-          type: 'string',
-        },
-      ],
+      type: "imageWithAlt",
     },
     {
       name: "welcomeText",
@@ -41,19 +31,7 @@ export default {
     {
       name: "blackButton",
       title: "Black Button",
-      type: "object",
-      fields: [
-        {
-          name: "text",
-          title: "Button Text",
-          type: "string",
-        },
-        {
-          name: "url",
-          title: "Button URL",
-          type: "string",
-        },
-      ],
+      type: "link",
       options: {
         collapsible: true,
         collapsed: true,
@@ -62,50 +40,16 @@ export default {
     {
       name: "transparentButton",
       title: "Transparent Button",
-      type: "object",
-      fields: [
-        {
-          name: "text",
-          title: "Button Text",
-          type: "string",
-        },
-        {
-          name: "url",
-          title: "Button URL",
-          type: "string", // Changed from 'url' to 'string' to disable validation
-        },
-      ],
+      type: "link",
       options: {
-        collapsible: true, // Makes the object collapsible
-        collapsed: true, // Start in collapsed mode
+        collapsible: true,
+        collapsed: true,
       },
     },
     {
       name: "socialMediaGroup",
       title: "Social Media Group",
-      type: "object",
-      fields: [
-        {
-          name: "facebook",
-          title: "Facebook URL",
-          type: "string",
-        },
-        {
-          name: "youtube",
-          title: "YouTube URL",
-          type: "string",
-        },
-        {
-          name: "twitter",
-          title: "Twitter URL",
-          type: "string",
-        },
-        {
-          name: "instagram",
-          title: "Instagram URL",
-          type: "string",
-        },
-      ],
+      type: "socialMediaGroup",
       options: {
         collapsible: true,
         collapsed: true,
@@ -114,7 +58,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'heading',
+      title: 'welcomeText',
     },
     prepare({ title }) {
       return {

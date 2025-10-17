@@ -51,12 +51,13 @@ export default {
     },
   ],
   preview: {
-    select: { t: 'title', s: 'subtitle', count: 'testimonialList.length' },
-    prepare({ t, s, count }) {
+    select: {
+      title: 'welcomeText',
+    },
+    prepare({ title }) {
       return {
-        title: t || 'Testimonials',
-        subtitle: s || `${count ?? 0} testimonial(s)`,
-      }
+        title: title || 'Testimonials',
+      };
     },
   },
 }

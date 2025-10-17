@@ -5,14 +5,14 @@ import { serverClient } from '@/sanity/lib/serverClient'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import QuoteSection from '@/components/QuoteSection'
-import AboutPhotosReel from '@/components/AboutPhotosReel'
+import AboutVideosReel from '@/components/AboutVideosReel'
 import Instruments from '@/components/Instruments'
-import Whyrethme from '@/components/Whyrethme'
+import WhyTreehouse from '@/components/WhyTreehouse'
 import OurPrograms from '@/components/OurPrograms'
 import Testimonials from '@/components/Testimonials'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
-import AboutReels from '@/components/AboutReels'
+import AboutPhotosReel from '@/components/AboutPhotosReel'
 import ClassOfferingsCarousel from '@/components/ClassOfferingsCarousel'
 
 export const revalidate = 60
@@ -24,11 +24,11 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
   modules[]{
     ...,
 
-    _type == "aboutPhotosReel" => {
+    _type == "aboutVideosReel" => {
       "ratio": image.asset->metadata.dimensions.aspectRatio
     },
 
-    _type == "aboutReels" => {
+    _type == "aboutPhotosReel" => {
       ...,
       photos[]{
         ...,
@@ -37,7 +37,7 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
       }
     },
 
-    _type == "aboutPhotosReel" => {
+    _type == "aboutVideosReel" => {
       ...,
       videos[]{
         label,
@@ -71,7 +71,7 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
 const idMap = {
   hero: 'home',
   rating: 'rating',
-  aboutPhotosReel: 'about',
+  aboutVideosReel: 'about',
   ourClass: 'ourclass',
   why: 'why',
   program: 'programs',
@@ -83,13 +83,13 @@ function renderModule(m) {
   switch (m._type) {
     case 'hero':        return <Hero data={m} />
     case 'rating':      return <QuoteSection data={m} />
-    case 'aboutPhotosReel':       return <AboutPhotosReel key={m._key} data={m} />
+    case 'aboutVideosReel':       return <AboutVideosReel key={m._key} data={m} />
     case 'ourClass':    return <Instruments data={m} />
-    case 'why':         return <Whyrethme data={m} />
+    case 'why':         return <WhyTreehouse data={m} />
     case 'program':     return <OurPrograms data={m} />
     case 'testimonial': return <Testimonials key={m._key} data={m} />
     case 'contact':     return <Contact data={m} />
-    case 'aboutReels': return <AboutReels key={m._key} data={m} />
+    case 'aboutPhotosReel': return <AboutPhotosReel key={m._key} data={m} />
     case 'classOfferings': return <ClassOfferingsCarousel data={m} />
     default:            return null
   }

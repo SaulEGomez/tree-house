@@ -1,7 +1,7 @@
 export default {
     name: 'rating',
     title: 'Rating',
-    type: 'document',
+    type: 'object',
     fields: [
       {
         name: 'mainText',
@@ -53,7 +53,7 @@ export default {
     ],
     preview: {
       select: {
-        title: 'heading',
+        title: 'welcomeText',
       },
       prepare({ title }) {
         return {

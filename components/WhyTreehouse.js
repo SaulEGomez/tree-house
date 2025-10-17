@@ -5,7 +5,7 @@ import CountUp from 'react-countup';
 import { useMediaQuery } from "react-responsive";
 import { urlFor } from "@/sanity/lib/image";
 
-function Whyrethme({ data }) {
+function WhyTreehouse({ data }) {
     
     const ref = useRef(null);
     const InView = useInView(ref, { once: true });
@@ -111,4 +111,4 @@ function Whyrethme({ data }) {
     );
 }
 
-export default Whyrethme;
+export default WhyTreehouse;

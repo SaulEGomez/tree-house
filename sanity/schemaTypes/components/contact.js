@@ -3,7 +3,7 @@ import { defineType, defineField } from 'sanity';
 export default {
   name: 'contact',
   title: 'Contact Us',
-  type: 'document',
+  type: 'object',
   fields: [
     {
       name: 'subtitle',
@@ -79,7 +79,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'heading',
+      title: 'welcomeText',
     },
     prepare({ title }) {
       return {
