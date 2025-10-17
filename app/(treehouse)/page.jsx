@@ -23,20 +23,6 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
   "footer": *[_type == "footer"][0],
   modules[]{
     ...,
-
-    _type == "aboutVideosReel" => {
-      "ratio": image.asset->metadata.dimensions.aspectRatio
-    },
-
-    _type == "aboutPhotosReel" => {
-      ...,
-      photos[]{
-        ...,
-        "url": asset->url,
-        "ratio": asset->metadata.dimensions.aspectRatio
-      }
-    },
-
     _type == "aboutVideosReel" => {
       ...,
       videos[]{
@@ -45,6 +31,14 @@ const query = groq`*[_type == "page" && slug.current == "home"][0]{
         poster,                      
         "fileUrl": video.asset->url, 
         "posterUrl": poster.asset->url
+      },
+    },
+    _type == "aboutPhotosReel" => {
+      ...,
+      photos[]{
+        ...,
+        "url": asset->url,
+        "ratio": asset->metadata.dimensions.aspectRatio
       }
     },
     _type == "classOfferings" => {
