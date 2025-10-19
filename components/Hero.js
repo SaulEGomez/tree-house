@@ -7,7 +7,7 @@ import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { useRef } from "react";
 import { urlFor } from "@/sanity/lib/image";
-import { Link as ScrollLink } from "react-scroll"; // ← alias
+import { Link as ScrollLink } from "react-scroll";
 
 const iconMap = {
   facebook: <FaFacebookF />,
@@ -31,6 +31,7 @@ function Hero({ data = {} }) {
     socialMediaGroup = {},
     welcomeText,
     blackButton = {},
+    blackButtonDropdown = [], 
     topImage,
     redTitle,
     description,
@@ -44,6 +45,7 @@ function Hero({ data = {} }) {
   const transparentButtonUrl = (transparentButton.url || "contact").replace(/^#/, "");
 
   const topImageUrl = topImage ? urlFor(topImage).url() : "";
+  const dropdownLinks = Array.isArray(blackButtonDropdown) ? blackButtonDropdown : [];
 
   return (
     <section className="/ bg-color-1 h-auto w-full pt-6 pb-[140px]">
@@ -59,6 +61,7 @@ function Hero({ data = {} }) {
       >
         <div>
           <div className="flex flex-col justify-center items-center gap-[20px] h-auto">
+            {/* --- TOP IMAGE (KEPT) --- */}
             <motion.div
               ref={ref1}
               initial={{ opacity: 0, y: 150 }}
@@ -68,7 +71,7 @@ function Hero({ data = {} }) {
               {topImageUrl ? (
                 <img
                   src={topImageUrl}
-                  alt="saxophone"
+                  alt={topImage?.alt || "hero image"}
                   className="w-[950px] max-w-full h-[400px] object-cover mx-auto pt-8"
                 />
               ) : null}
@@ -131,7 +134,7 @@ function Hero({ data = {} }) {
               {description}
             </motion.p>
 
-            {/* Buttons */}
+            {/* --- BUTTONS --- */}
             <motion.div
               ref={ref2}
               initial={{ opacity: 0, y: 150 }}
@@ -144,15 +147,42 @@ function Hero({ data = {} }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={isMobile ? { duration: 0.75, delay: 0.5 } : { duration: 1, delay: 0.5 }}
               >
-                <ScrollLink
-                  to={blackButtonUrl}
-                  smooth
-                  duration={500}
-                  offset={-80}
-                  className="btn flex justify-center items-center outline-none border-none bg-black w-[200px] text-white px-6 py-[10px] rounded-[4px] cursor-pointer hover:scale-[0.9] transition-all duration-500 tracking-wider font-medium"
-                >
-                  {blackButtonText}
-                </ScrollLink>
+                {/* Wrap button for hover dropdown */}
+                <div className="relative group inline-block">
+                  <ScrollLink
+                    to={blackButtonUrl}
+                    smooth
+                    duration={500}
+                    offset={-80}
+                    className="btn flex justify-center items-center outline-none border-none bg-black w-[200px] text-white px-6 py-[10px] rounded-[4px] cursor-pointer hover:scale-[0.9] transition-all duration-500 tracking-wider font-medium"
+                  >
+                    {blackButtonText}
+                  </ScrollLink>
+
+                  {/* Dropdown (only if there are items) */}
+                  {dropdownLinks.length > 0 && (
+                    <ul className="absolute z-20 left-0 mt-2 w-[200px] bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300">
+                      {dropdownLinks.map((item, idx) => {
+                        if (!item) return null;
+                        const { text = "", url = "" } = item;
+                        const target = String(url || "").replace(/^#/, "");
+                        return (
+                          <li key={idx} className="block text-left">
+                            <ScrollLink
+                              to={target}
+                              smooth
+                              duration={500}
+                              offset={-80}
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                            >
+                              {text}
+                            </ScrollLink>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
               </motion.div>
 
               <ScrollLink
@@ -166,7 +196,7 @@ function Hero({ data = {} }) {
               </ScrollLink>
             </motion.div>
 
-            {/* Socials */}
+            {/* --- SOCIALS --- */}
             <div className="mt-[30px]" ref={ref3}>
               <ul className="flex gap-6 justify-center items-center">
                 {Object.entries(socialMediaGroup).map(([key, url], i) => (

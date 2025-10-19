@@ -2,6 +2,7 @@ export default {
   name: "hero",
   title: "Hero",
   type: "object",
+  
   fields: [
     {
       name: "topImage",
@@ -32,6 +33,16 @@ export default {
       name: "blackButton",
       title: "Black Button",
       type: "link",
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+    {
+      name: "blackButtonDropdown",
+      title: "Black Button Dropdown Links",
+      type: "array",
+      of: [{ type: "link" }],
       options: {
         collapsible: true,
         collapsed: true,

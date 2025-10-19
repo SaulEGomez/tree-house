@@ -72,6 +72,7 @@ const idMap = {
   testimonial: 'testimonials',
   contact: 'contact',
   classOfferings: 'classofferings',
+  aboutPhotoReels: 'ourfounder',
 }
 
 function renderModule(m) {
