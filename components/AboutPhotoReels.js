@@ -57,7 +57,7 @@ export default function AboutPhotoReels({ data }) {
             initial={{ opacity: 0, y: 180 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={isMobile ? { duration: 0.75, delay: 0.1 } : { duration: 1, delay: 0.1 }}
-            className="my-3 mb-[6px] text-black text-[45px] md:text-[55px] font-semibold leading-tight"
+            className="my-3 mb-[6px] text-white text-[45px] md:text-[55px] font-semibold leading-tight"
           >
             {title}
           </motion.h1>
@@ -66,7 +66,7 @@ export default function AboutPhotoReels({ data }) {
             initial={{ opacity: 0, y: 180 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={isMobile ? { duration: 0.75, delay: 0.2 } : { duration: 1, delay: 0.2 }}
-            className="text-gray-600 text-[18px] font-normal mt-2"
+            className="text-white-600 text-[18px] font-normal mt-2"
           >
             {description}
           </motion.p>
@@ -82,7 +82,7 @@ export default function AboutPhotoReels({ data }) {
                     ? { duration: 0.75, delay: 0.3 + i * 0.1 }
                     : { duration: 1, delay: 0.3 + i * 0.1 }
                 }
-                className="my-[16px] text-black text-[18px] font-medium"
+                className="my-[16px] text-white text-[18px] font-medium"
               >
                 {item}
               </motion.p>

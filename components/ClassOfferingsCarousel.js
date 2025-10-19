@@ -31,7 +31,7 @@ export default function ClassOfferingsCarousel({ data }) {
           <p className="text-[20px] tracking-wider text-green-600">{subtitle}</p>
         ) : null}
         {title ? (
-          <h2 className="mt-2 text-[45px] md:text-[55px] font-semibold leading-tight text-black">
+          <h2 className="mt-2 text-[45px] md:text-[55px] font-semibold leading-tight text-white">
             {title}
           </h2>
         ) : null}
