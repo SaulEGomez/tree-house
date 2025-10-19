@@ -72,7 +72,7 @@ export default function AboutVideosReel({ data }) {
   const current = hasClips ? clips[index] : null;
 
   return (
-    <section className="bg-black w-full">
+    <section className="bg-color-1 w-full">
       <div className="w-full py-[140px] px-[40px] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
         {/* LEFT: video */}
         <div className="basis-[47%]">

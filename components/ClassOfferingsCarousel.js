@@ -25,7 +25,7 @@ export default function ClassOfferingsCarousel({ data }) {
   const current = count ? slides[i] : null;
 
   return (
-    <section className="w-full bg-color-1">
+    <section className="w-full bg-black">
       <div className="mx-auto max-w-6xl px-[40px] py-[120px]">
         {subtitle ? (
           <p className="text-[20px] tracking-wider text-green-600">{subtitle}</p>

@@ -40,7 +40,7 @@ export default function AboutPhotoReels({ data }) {
   const current = hasSlides ? slides[index] : null;
 
   return (
-    <section className="bg-color-1 w-full">
+    <section className="bg-black w-full">
       <div className="w-full py-[140px] px-[40px] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
         {/* LEFT: text */}
         <div ref={textRef} className="flex basis-[47%] flex-col items-start">
