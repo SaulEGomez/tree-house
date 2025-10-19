@@ -71,6 +71,7 @@ const idMap = {
   program: 'programs',
   testimonial: 'testimonials',
   contact: 'contact',
+  classOfferings: 'classofferings',
 }
 
 function renderModule(m) {
